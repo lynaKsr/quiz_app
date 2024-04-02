@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "279635006540",
+    "project_id": "login-register-firebase-f0696",
+    "storage_bucket": "login-register-firebase-f0696.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279635006540:android:4ab34db2fd0e6abbe990e9",
+        "android_client_info": {
+          "package_name": "com.example.projet_quizz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_1XECqhtZaTv_bvYJhIEBksOpO7ojxAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279635006540:android:c4d2f1e9b55ac5eae990e9",
+        "android_client_info": {
+          "package_name": "com.example.quiz_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_1XECqhtZaTv_bvYJhIEBksOpO7ojxAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

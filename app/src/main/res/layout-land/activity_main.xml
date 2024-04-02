@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFEEE2"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageMain"
+        android:layout_width="342dp"
+        android:layout_height="323dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/imageMain"
+        android:src="@drawable/answer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="360dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#D2BBA0"
+        android:fontFamily="sans-serif-smallcaps"
+        android:padding="8dp"
+        android:text="@string/Start"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAccueil" />
+
+    <TextView
+        android:id="@+id/textViewAccueil"
+        android:layout_width="333dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/WELCOME"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="360dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#D2BBA0"
+        android:fontFamily="sans-serif-smallcaps"
+        android:padding="8dp"
+        android:text="@string/Exit"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

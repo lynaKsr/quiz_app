@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">quiz_app</string>
+    <string name="imageMain">image pour l\'activité principale</string>
+    <string name="Start">commencer</string>
+    <string name="WELCOME">Bienvenue</string>
+    <string name="Exit">Quitter</string>
+    <string name="Email">mail</string>
+    <string name="Password">mot dfe passe</string>
+    <string name="Login">se connecter</string>
+    <string name="signup">s\'inscrire</string>
+    <string name="login">se connecter</string>
+    <string name="Register">s\'inscrire</string>
+    <string name="imageRegister">image pour l\'activité d\'inscription</string>
+    <string name="choose_your_handle">"choisi ton pseudo "</string>
+    <string name="confirm">valider</string>
+    <string name="connectedUser">vous etes connecté avec l\'email suivant :</string>
+    <string name="logout">se déconnecter</string>
+    <string name="AccueilImage">"image pour l'activité d'accueil "</string>
+    <string name="cinema">cinema</string>
+    <string name="cinemaImage">image pour la catégorie cinema</string>
+    <string name="knowledge">culture générale</string>
+    <string name="knowledgeImage">image pour la catégorie culture générale</string>
+    <string name="sport">sport</string>
+    <string name="imageSport">image pour la catégorie sport</string>
+    <string name="music">"musique "</string>
+    <string name="musicImage">"image pour la catégorie musique "</string>
+    <string name="choose_category">choisi une categorie de quiz</string>
+    <string name="question_01">Question 01</string>
+    <string name="count">compteur</string>
+    <string name="next">suivant</string>
+    <string name="choose_1">choix 1</string>
+    <string name="choose_2">choix 2</string>
+    <string name="choose_3">choix 3</string>
+    <string name="choose_4">choix 4</string>
+    <string name="back">retour</string>
+    <string name="question_02">question 02</string>
+    <string name="select_answer">selectionne la bonne réponse</string>
+    <string name="check_answer">coche la bonne réponse</string>
+    <string name="answer_1">réponse 1</string>
+    <string name="answer_2">réponse 2</string>
+    <string name="answer_3">réponse 3</string>
+    <string name="answer_4">réponse 4</string>
+</resources>

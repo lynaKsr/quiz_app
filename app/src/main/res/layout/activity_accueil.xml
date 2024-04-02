@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFEEE2"
+    tools:context=".AccueilActivity">
+
+
+    <TextView
+        android:id="@+id/TextViewPseudo"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="@string/choose_your_handle"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImagePseudo"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/buttonConfirmPseudo"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="22dp"
+        android:backgroundTint="#9F7E69"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/confirm"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPseudo" />
+
+    <EditText
+        android:id="@+id/editTextPseudo"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="22dp"
+        android:autofillHints="handle"
+        android:hint="@string/choose_your_handle"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewPseudo"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <View
+        android:id="@+id/devider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="38dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonConfirmPseudo" />
+
+    <TextView
+        android:id="@+id/user_details"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/connectedUser"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#9F7E69"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/logout"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ImagePseudo"
+        android:layout_width="315dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/AccueilImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/process"
+        tools:ignore="ImageContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

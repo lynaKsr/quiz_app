@@ -45,4 +45,7 @@
     <string name="togglebutton">ToggleButton</string>
     <string name="notCorrect"> not correct </string>
     <string name="correct">correct\n</string>
+    <string name="question_04">question 04\n</string>
+    <string name="response">"enter the correct answer "</string>
+    <string name="response_t4">response</string>
 </resources>

@@ -13,7 +13,7 @@
     <string name="imageRegister">"image for register activity "</string>
     <string name="choose_your_handle">Choose your handle</string>
     <string name="confirm">confirm</string>
-    <string name="connectedUser">you are connected with the email adress : example@gmail.com</string>
+    <string name="connectedUser">you are connected with the email address : example@gmail.com</string>
     <string name="logout">logout</string>
     <string name="AccueilImage">image for the accueil activity</string>
     <string name="cinema">cinema\n</string>
@@ -33,19 +33,19 @@
     <string name="choose_3">Choose 3</string>
     <string name="choose_4">Choose 4</string>
     <string name="back">back</string>
-    <string name="question_02">question 02\n</string>
+    <string name="question_02" translatable="false">question 02\n</string>
     <string name="select_answer">Select the correct answer</string>
     <string name="check_answer">check the correct answer</string>
     <string name="answer_1">answer 1</string>
     <string name="answer_2">answer 2</string>
     <string name="answer_3">answer 3</string>
     <string name="answer_4">answer 4</string>
-    <string name="question_03">question 03</string>
+    <string name="question_03" translatable="false">question 03</string>
     <string name="true_false">"is it true or false ? "</string>
-    <string name="togglebutton">ToggleButton</string>
+    <string name="togglebutton" translatable="false">ToggleButton</string>
     <string name="notCorrect"> not correct </string>
     <string name="correct">correct\n</string>
-    <string name="question_04">question 04\n</string>
+    <string name="question_04" translatable="false">question 04\n</string>
     <string name="response">"enter the correct answer "</string>
     <string name="response_t4">response</string>
 </resources>

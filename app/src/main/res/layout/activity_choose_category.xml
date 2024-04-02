@@ -22,139 +22,142 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <GridLayout
-        android:id="@+id/gridLayoutThemes"
-        android:layout_width="355dp"
+    <LinearLayout
+        android:id="@+id/linearLayoutCinema"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="22dp"
-        android:columnCount="2"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="32dp"
+        android:background="#9F7E69"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayoutMusic"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/themeTitle"
-        tools:ignore="TextSizeCheck">
+        tools:ignore="UseCompoundDrawables">
 
-        <LinearLayout
-            android:id="@+id/linearLayoutMusic"
+        <ImageView
+            android:id="@+id/cinemaImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#D2BBA0"
+            android:contentDescription="@string/cinemaImage"
+            app:srcCompat="@drawable/cinema_projector" />
+
+        <TextView
+            android:id="@+id/textViewCinema"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/cinema"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutKnowledge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:background="#9F7E69"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCinema"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/KnowledgeImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#D2BBA0"
+            android:contentDescription="@string/knowledgeImage"
+            app:srcCompat="@drawable/knowledge" />
+
+        <TextView
+            android:id="@+id/textViewKnowledge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#9F7E69"
-            android:orientation="vertical"
-            android:padding="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/themeTitle"
-            tools:ignore="UseCompoundDrawables">
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/knowledge"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/musicImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="#D2BBA0"
-                android:contentDescription="@string/musicImage"
-                app:srcCompat="@drawable/music_instrument" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/textViewMusic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/music"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayoutSport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        android:background="#9F7E69"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutMusic"
+        tools:ignore="UseCompoundDrawables">
 
-        <LinearLayout
-            android:id="@+id/linearLayoutSport"
+        <ImageView
+            android:id="@+id/sportImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#D2BBA0"
+            android:contentDescription="@string/imageSport"
+            app:srcCompat="@drawable/balls_sports" />
+
+        <TextView
+            android:id="@+id/textViewSport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#9F7E69"
-            android:orientation="vertical"
-            android:padding="16dp"
-            tools:ignore="UseCompoundDrawables">
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/sport"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/sportImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="#D2BBA0"
-                android:contentDescription="@string/imageSport"
-                app:srcCompat="@drawable/balls_sports" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/textViewSport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/sport"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+    <LinearLayout
+        android:id="@+id/linearLayoutMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:background="#9F7E69"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/themeTitle"
+        tools:ignore="UseCompoundDrawables">
 
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/musicImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#D2BBA0"
+            android:contentDescription="@string/musicImage"
+            app:srcCompat="@drawable/music_instrument" />
 
-        <LinearLayout
-            android:id="@+id/linearLayoutKnowledge"
+        <TextView
+            android:id="@+id/textViewMusic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#9F7E69"
-            android:orientation="vertical"
-            android:padding="16dp"
-            tools:ignore="UseCompoundDrawables">
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/music"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/KnowledgeImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="#D2BBA0"
-                android:contentDescription="@string/knowledgeImage"
-                app:srcCompat="@drawable/knowledge" />
-
-            <TextView
-                android:id="@+id/textViewKnowledge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/knowledge"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayoutCinema"
-            android:layout_width="181dp"
-            android:layout_height="206dp"
-            android:background="#9F7E69"
-            android:orientation="vertical"
-            android:padding="16dp"
-            tools:ignore="UseCompoundDrawables">
-
-            <ImageView
-                android:id="@+id/cinemaImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="#D2BBA0"
-                android:contentDescription="@string/cinemaImage"
-                app:srcCompat="@drawable/cinema_projector" />
-
-            <TextView
-                android:id="@+id/textViewCinema"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/cinema"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="TextSizeCheck" />
-        </LinearLayout>
-    </GridLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

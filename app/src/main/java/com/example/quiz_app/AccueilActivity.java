@@ -61,7 +61,7 @@ public class AccueilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String pseudo = editTextPseudo.getText().toString();
                 if(!pseudo.isEmpty()) {
-                    Toast.makeText(AccueilActivity.this, "Successfully chosen holder" + pseudo, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AccueilActivity.this, "Successfully chosen holder " + pseudo, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
                     startActivity(intent);
                 } else {

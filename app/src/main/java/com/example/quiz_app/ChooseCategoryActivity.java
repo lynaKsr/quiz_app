@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class ChooseCategoryActivity extends AppCompatActivity {
 
     ImageView musicImage;
@@ -31,8 +33,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ChooseCategoryActivity.this, "music category selected with success", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(ChooseCategoryActivity.this, QuestionT1Activity.class);
-                startActivity(intent);
+                Utils.launchRandomQuestionActivity(ChooseCategoryActivity.this);
             }
         });
 
@@ -41,8 +42,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ChooseCategoryActivity.this, "sport category selected with success", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(ChooseCategoryActivity.this, QuestionT1Activity.class);
-                startActivity(intent);
+                Utils.launchRandomQuestionActivity(ChooseCategoryActivity.this);
             }
         });
 
@@ -51,8 +51,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ChooseCategoryActivity.this, "knowledge category selected with success", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(ChooseCategoryActivity.this, QuestionT1Activity.class);
-                startActivity(intent);
+                Utils.launchRandomQuestionActivity(ChooseCategoryActivity.this);
             }
         });
 
@@ -61,9 +60,10 @@ public class ChooseCategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ChooseCategoryActivity.this, "cinema category selected with success", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(ChooseCategoryActivity.this, QuestionT1Activity.class);
-                startActivity(intent);
+                Utils.launchRandomQuestionActivity(ChooseCategoryActivity.this);
             }
         });
     }
+
+
 }

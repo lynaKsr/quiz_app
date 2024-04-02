@@ -6,7 +6,7 @@
     <string name="WELCOME">Bienvenue</string>
     <string name="Exit">Quitter</string>
     <string name="Email">mail</string>
-    <string name="Password">mot dfe passe</string>
+    <string name="Password">mot de passe</string>
     <string name="Login">se connecter</string>
     <string name="signup">s\'inscrire</string>
     <string name="login">se connecter</string>
@@ -34,11 +34,14 @@
     <string name="choose_3">choix 3</string>
     <string name="choose_4">choix 4</string>
     <string name="back">retour</string>
-    <string name="question_02">question 02</string>
     <string name="select_answer">selectionne la bonne réponse</string>
     <string name="check_answer">coche la bonne réponse</string>
     <string name="answer_1">réponse 1</string>
     <string name="answer_2">réponse 2</string>
     <string name="answer_3">réponse 3</string>
     <string name="answer_4">réponse 4</string>
+    <string name="notCorrect">incorrecte</string>
+    <string name="correct">correcte</string>
+    <string name="response">entrez la bonne réponse</string>
+    <string name="response_t4">réponse</string>
 </resources>

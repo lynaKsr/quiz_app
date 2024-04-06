@@ -44,8 +44,19 @@
     <string name="correct">correcte</string>
     <string name="response">entrez la bonne réponse</string>
     <string name="response_t4">réponse</string>
-    <string name="true_false">"is it true or false ? "</string>
-    <string name="language_switch">English</string>
-    <string name="theme_light">light mode\n</string>
-    <string name="theme_dark">dark mode\n</string>
+    <string name="true_false">"c'est vrai ou faux"</string>
+    <string name="language_switch">change la lange</string>
+    <string name="theme_light">mode clair</string>
+    <string name="theme_dark">mode sombre</string>
+    <string name="add_categogy">Add Categogy</string>
+    <string name="add_question">Add Question</string>
+    <string name="save_category">Save Category</string>
+    <string name="save_question">Save Question</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="name_cate">name cate</string>
+    <string name="code_cate">code cate</string>
+    <string name="textfill">hint</string>
+    <string name="_123">_123</string>
+
 </resources>

@@ -5,8 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFEEE2"
-    tools:context=".ui.SettingActivity">
+    tools:context="ui.SettingActivity">
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/addQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginTop="432dp"
+            android:text="@string/add_question"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnSaveQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#9F7E69"
+            android:text="@string/save_question"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addQuestion" />
+
+        <TextView
+            android:id="@+id/addCate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="304dp"
+            android:text="@string/add_categogy"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSaveQuestion" />
+
+        <Button
+            android:id="@+id/btnSaveCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#9F7E69"
+            android:text="@string/save_category"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addCate" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Switch
         android:id="@+id/languageSwitch"

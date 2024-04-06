@@ -4,6 +4,6 @@ public enum TypeQuestionEnum {
     MULTIPLE_CHOICE,
     YES_NO,
     //TRUE_FALSE,
-    //FILL_IN_THE_BLANK
+    FILL_THE_BLANK
 
 }

@@ -168,7 +168,7 @@ public class SaveQuestionActivity extends AppCompatActivity {
 
             questionModel.setExactlyAnswer(getCodeExactAnswer(getResources().getResourceEntryName(rdExactAnswer.getCheckedRadioButtonId())));
             questionModel.setAnswerYN(getAnswerYN(getResources().getResourceEntryName(rdYN.getCheckedRadioButtonId())));
-            questionModel.setCategoryCode(categoryModel.getCode());
+            questionModel.setCateCode(categoryModel.getCode());
 
             firebaseFirestore.collection("develop")
                     .document("quizz")

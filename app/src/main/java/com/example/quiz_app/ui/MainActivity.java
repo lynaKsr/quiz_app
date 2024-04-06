@@ -7,6 +7,12 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.quiz_app.R;
+import com.example.quiz_app.model.QuestionModel;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +47,20 @@ public class MainActivity extends AppCompatActivity {
         btnSaveCategory.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SaveCategoryActivity.class);
             startActivity(intent);
+        });
+
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        CollectionReference questionRef = firebaseFirestore.collection("develop")
+                .document("quizz")
+                .collection("question");
+
+        Query query = questionRef.whereEqualTo("cateCode", "CINEMA");
+        query.addSnapshotListener((value, error) -> {
+            if (value != null) {
+                List<QuestionModel> questionModels = value.toObjects(QuestionModel.class);
+                System.out.println("questionList: " + questionModels);
+                //viewPagerAnswer.setAdapter(new QuestionT1Adapter(getApplicationContext(), questionModels, questionChoose));
+            }
         });
     }
 }

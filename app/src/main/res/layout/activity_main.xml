@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFEEE2"
-    tools:context="ui.MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:id="@+id/imageMain"
         android:layout_width="416dp"
-        android:layout_height="250dp"
+        android:layout_height="354dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="24dp"
@@ -26,9 +26,9 @@
         android:id="@+id/buttonStart"
         android:layout_width="355dp"
         android:layout_height="63dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="22dp"
         android:backgroundTint="#D2BBA0"
         android:fontFamily="sans-serif-smallcaps"
         android:padding="8dp"
@@ -37,7 +37,6 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAccueil" />
 
@@ -45,7 +44,7 @@
         android:id="@+id/textViewAccueil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/WELCOME"
         android:textColor="@color/black"
@@ -59,9 +58,9 @@
         android:id="@+id/buttonExit"
         android:layout_width="355dp"
         android:layout_height="63dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#D2BBA0"
         android:fontFamily="sans-serif-smallcaps"
         android:padding="8dp"
@@ -69,34 +68,9 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
-
-    <Button
-        android:id="@+id/btnSaveQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="319dp"
-        android:backgroundTint="#D2BBA0"
-        android:text="@string/save_question"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/btnSaveCategory"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <Button
-        android:id="@+id/btnSaveCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="320dp"
-        android:backgroundTint="#D2BBA0"
-        android:text="@string/save_cate"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

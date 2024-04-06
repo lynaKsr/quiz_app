@@ -1,71 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFEEE2"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <Button
-        android:id="@+id/buttonChoose1"
-        android:layout_width="355dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="22dp"
-        android:backgroundTint="#9F7E69"
-        android:fontFamily="sans-serif-smallcaps"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/choose_1"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    android:background="#FFEEE2">
 
-    <Button
-        android:id="@+id/buttonChoose2"
-        android:layout_width="355dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="22dp"
-        android:backgroundTint="#9F7E69"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/choose_2"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/csYN"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioGroup
+            android:id="@+id/rdYN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="441dp">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/ansY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/yes" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/ansN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/csFillBlank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonChoose1" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/buttonChoose3"
-        android:layout_width="355dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="22dp"
-        android:backgroundTint="#9F7E69"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/choose_3"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonChoose2" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/buttonChoose4"
-        android:layout_width="355dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="22dp"
-        android:backgroundTint="#9F7E69"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/choose_4"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonChoose3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textFill"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/textfill"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/csMultipleChoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <Button
+            android:id="@+id/buttonChoose1"
+            android:layout_width="355dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="22dp"
+            android:backgroundTint="#9F7E69"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hapticFeedbackEnabled="false"
+            android:text="@string/choose_1"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonChoose2"
+            android:layout_width="355dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="22dp"
+            android:backgroundTint="#9F7E69"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/choose_2"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonChoose1" />
+
+        <Button
+            android:id="@+id/buttonChoose3"
+            android:layout_width="355dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="22dp"
+            android:backgroundTint="#9F7E69"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/choose_3"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonChoose2" />
+
+        <Button
+            android:id="@+id/buttonChoose4"
+            android:layout_width="355dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="22dp"
+            android:backgroundTint="#9F7E69"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/choose_4"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonChoose3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

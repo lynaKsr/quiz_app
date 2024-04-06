@@ -1,16 +1,15 @@
 package com.example.quiz_app.model;
 
-import org.checkerframework.checker.units.qual.C;
-
 import java.io.Serializable;
 
 public class CategoryModel implements Serializable {
     private String code;
     private String name;
-    public CategoryModel(){
+
+    public CategoryModel() {
     }
 
-    public CategoryModel(String code, String name){
+    public CategoryModel(String code, String name) {
         this.code = code;
         this.name = name;
     }

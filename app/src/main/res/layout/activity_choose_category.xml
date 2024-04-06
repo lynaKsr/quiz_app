@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFEEE2"
-    tools:context=".ChooseCategoryActivity">
+    tools:context=".ui.ChooseCategoryActivity">
 
     <TextView
         android:id="@+id/themeTitle"
@@ -15,12 +15,13 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/choose_category"
         android:textColor="@color/black"
-        android:textSize="34sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
         android:id="@+id/linearLayoutCinema"

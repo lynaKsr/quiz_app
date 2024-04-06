@@ -48,6 +48,13 @@
     <string name="question_04" translatable="false">question 04\n</string>
     <string name="response">"enter the correct answer "</string>
     <string name="response_t4">response</string>
+    <string name="save_cate" translatable="false">Save C</string>
+    <string name="code" translatable="false">Code</string>
+    <string name="name" translatable="false">Name</string>
+    <string name="_123" translatable="false">123</string>
+    <string name="code_cate" translatable="false">Code</string>
+    <string name="name_cate" translatable="false">Name</string>
+    <string name="save_question" translatable="false">Save Q</string>
     <string name="language_switch">English</string>
     <string name="theme_light">light mode\n</string>
     <string name="theme_dark">dark mode\n</string>

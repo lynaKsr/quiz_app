@@ -1,6 +1,4 @@
-package com.example.quiz_app;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.quiz_app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.quiz_app.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -42,31 +43,25 @@ public class AccueilActivity extends AppCompatActivity {
         else {
             String email = user.getEmail();
             textView.setText("");
-            String newText = "you are connected with the email adress : " + email;
+            String newText = "You are connected with the email adress : " + email;
             textView.setText(newText);
         }
 
-        buttonLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        buttonLogout.setOnClickListener(v ->{
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        buttonConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String pseudo = editTextPseudo.getText().toString();
-                if(!pseudo.isEmpty()) {
-                    Toast.makeText(AccueilActivity.this, "Successfully chosen holder " + pseudo, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AccueilActivity.this, SettingActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(AccueilActivity.this, "Please enter your holder ! ", Toast.LENGTH_SHORT).show();
-                }
+        buttonConfirm.setOnClickListener(v -> {
+            String pseudo = editTextPseudo.getText().toString();
+            if(!pseudo.isEmpty()) {
+                Toast.makeText(AccueilActivity.this, "Successfully chosen holder " + pseudo, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(AccueilActivity.this, "Please enter your holder ! ", Toast.LENGTH_SHORT).show();
             }
         });
     }

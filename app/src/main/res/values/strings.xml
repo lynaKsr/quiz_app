@@ -48,4 +48,7 @@
     <string name="question_04" translatable="false">question 04\n</string>
     <string name="response">"enter the correct answer "</string>
     <string name="response_t4">response</string>
+    <string name="language_switch">English</string>
+    <string name="theme_light">light mode\n</string>
+    <string name="theme_dark">dark mode\n</string>
 </resources>

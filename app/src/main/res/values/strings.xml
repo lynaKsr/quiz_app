@@ -41,7 +41,7 @@
     <string name="answer_3">answer 3</string>
     <string name="answer_4">answer 4</string>
     <string name="question_03" translatable="false">question 03</string>
-    <string name="true_false" translatable="false">"is it true or false ? "</string>
+    <string name="true_false">"is it true or false ? "</string>
     <string name="togglebutton" translatable="false">ToggleButton</string>
     <string name="notCorrect"> not correct </string>
     <string name="correct">correct\n</string>
@@ -55,4 +55,7 @@
     <string name="code_cate" translatable="false">Code</string>
     <string name="name_cate" translatable="false">Name</string>
     <string name="save_question" translatable="false">Save Q</string>
+    <string name="language_switch">English</string>
+    <string name="theme_light">light mode\n</string>
+    <string name="theme_dark">dark mode\n</string>
 </resources>

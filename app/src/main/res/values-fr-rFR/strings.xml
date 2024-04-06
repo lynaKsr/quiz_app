@@ -44,4 +44,8 @@
     <string name="correct">correcte</string>
     <string name="response">entrez la bonne réponse</string>
     <string name="response_t4">réponse</string>
+    <string name="true_false">"is it true or false ? "</string>
+    <string name="language_switch">English</string>
+    <string name="theme_light">light mode\n</string>
+    <string name="theme_dark">dark mode\n</string>
 </resources>

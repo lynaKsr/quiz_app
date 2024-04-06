@@ -21,6 +21,12 @@
             android:name=".ui.QuestionT4Activity"
             android:exported="false" />
         <activity
+            android:name=".SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionT4Activity"
+            android:exported="false" />
+        <activity
             android:name=".ui.QuestionT3Activity"
             android:exported="false" />
         <activity

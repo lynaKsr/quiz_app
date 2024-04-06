@@ -5,21 +5,22 @@ import com.example.quiz_app.common.enumerate.TypeQuestionEnum;
 import java.util.List;
 
 public class QuestionModel {
-    private String categoryCode;
+    private String cateCode;
     private String question;
     private TypeQuestionEnum typeQuestionEnum;
     private List<AnswerModel> answerModels;
     private int exactlyAnswer;
     private String answerYN;
+
     public QuestionModel() {
     }
 
-    public String getCategoryCode() {
-        return categoryCode;
+    public String getCateCode() {
+        return cateCode;
     }
 
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
+    public void setCateCode(String cateCode) {
+        this.cateCode = cateCode;
     }
 
     public String getQuestion() {
@@ -65,7 +66,7 @@ public class QuestionModel {
     @Override
     public String toString() {
         return "QuestionModel{" +
-                "categoryCode='" + categoryCode + '\'' +
+                "cateCode='" + cateCode + '\'' +
                 ", question='" + question + '\'' +
                 ", typeQuestionEnum=" + typeQuestionEnum +
                 ", answerModels=" + answerModels +

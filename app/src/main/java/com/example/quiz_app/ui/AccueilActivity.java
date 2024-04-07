@@ -3,8 +3,10 @@ package com.example.quiz_app.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ public class AccueilActivity extends AppCompatActivity {
     TextView textView;
     EditText editTextPseudo;
     FirebaseUser user;
+    ImageView imageViewStart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class AccueilActivity extends AppCompatActivity {
         buttonConfirm = findViewById(R.id.buttonConfirmPseudo);
         textView = findViewById(R.id.user_details);
         editTextPseudo = findViewById(R.id.editTextPseudo);
+        imageViewStart = findViewById(R.id.imageViewStart);
+
         user = auth.getCurrentUser();
 
         // mettre à jour le pseudo à chaque fois que l'activité est créée
@@ -82,15 +88,20 @@ public class AccueilActivity extends AppCompatActivity {
                     editTextPseudo.setClickable(false);
                     editTextPseudo.setCursorVisible(false);
                     buttonConfirm.setEnabled(false); // Désactiver le bouton de confirmation
-
-                    // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
-                    Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
-                    startActivity(intent);
                 } else {
                     Toast.makeText(AccueilActivity.this, "Please enter your holder ! ", Toast.LENGTH_SHORT).show();
                 }
             });
         }
+
+        imageViewStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
+                Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void updateDisplayPseudo() {

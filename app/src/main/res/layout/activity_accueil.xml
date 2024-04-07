@@ -69,17 +69,19 @@
 
     <TextView
         android:id="@+id/user_details"
-        android:layout_width="355dp"
-        android:layout_height="60dp"
+        android:layout_width="360dp"
+        android:layout_height="81dp"
         android:layout_marginStart="22dp"
         android:layout_marginEnd="22dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/connectedUser"
+        android:text="@string/connected_with_email"
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/logout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextSizeCheck" />
 
@@ -109,5 +111,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/process"
         tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageViewStart"
+        android:layout_width="300dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/devider"
+        app:srcCompat="@drawable/start__1_" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

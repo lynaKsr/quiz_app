@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.quiz_app.QuizData;
 import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,7 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     Button buttonLogin;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
-    TextView textView;
+    TextView textViewSignup;
+    QuizData quizData;
 
     @Override
     public void onStart() {
@@ -32,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
+            // Transmission de l'objet QuizData à l'activité AccueilActivity
+            intent.putExtra("quizData", quizData);
             startActivity(intent);
             finish();
         }
@@ -49,13 +53,19 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassWord = findViewById(R.id.password_input);
         buttonLogin = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
-        textView = findViewById(R.id.signupText);
+        textViewSignup = findViewById(R.id.signupText);
 
-        textView.setOnClickListener(v->{
+        textViewSignup.setOnClickListener(v->{
             Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+            // Transmission de l'objet QuizData à l'activité RegisterActivity
+            intent.putExtra("quizData", quizData);
             startActivity(intent);
             finish();
         });
+
+        // récupération de l'objet QuizData transmis depuis MainActivity
+        quizData = (QuizData) getIntent().getSerializableExtra("quizData");
+
         buttonLogin.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email, password;
@@ -72,20 +82,23 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
-                        progressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                progressBar.setVisibility(View.GONE);
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                    // mise à jour de l'email dans l'objet QuizData
+                    quizData.setEmail(email);
+                    Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
+                    // Transmission de l'objet QuizData à l'activité AccueilActivity
+                    intent.putExtra("quizData", quizData);
+                    startActivity(intent);
+                    finish();
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 }

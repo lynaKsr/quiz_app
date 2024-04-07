@@ -26,6 +26,7 @@ public class AccueilActivity extends AppCompatActivity {
     EditText editTextPseudo;
     FirebaseUser user;
     ImageView imageViewStart;
+    QuizData quizData;
 
 
     @Override
@@ -44,29 +45,29 @@ public class AccueilActivity extends AppCompatActivity {
 
         user = auth.getCurrentUser();
 
+        quizData = (QuizData) getIntent().getSerializableExtra("quizData");
+
         // mettre à jour le pseudo à chaque fois que l'activité est créée
         updateDisplayPseudo();
 
         // on verifie si l'utilisateur est connecté
         if (user == null) {
             // on le redirige vers l'écran deconnexion s'il n'est pas connecté
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            Intent intent = new Intent(AccueilActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
 
         buttonLogout.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+            Intent intent = new Intent(AccueilActivity.this, SettingActivity.class);
+            intent.putExtra("quizData", quizData);
             startActivity(intent);
         });
 
         SharedPreferences preferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
         String pseudo = preferences.getString("USERNAME", "");
 
-        QuizData quizData = null;
         if (!pseudo.isEmpty()) {
-            quizData = new QuizData();
-            quizData.setUsername(pseudo);
 
             editTextPseudo.setText(pseudo);
             editTextPseudo.setEnabled(false);
@@ -87,6 +88,9 @@ public class AccueilActivity extends AppCompatActivity {
                     // enregistrement du nom d'utilisateur dnas les préférences de l'application
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("USERNAME", newPseudo).apply();
+                    // Mettre à jour QuizData
+                    quizData.setUsername(newPseudo);
+
                     updateDisplayPseudo();
                     editTextPseudo.setEnabled(false); // Désactiver le champ de texte après avoir choisi le pseudo
                     editTextPseudo.setFocusable(false);
@@ -98,14 +102,12 @@ public class AccueilActivity extends AppCompatActivity {
                 }
             });
         }
-
-        QuizData finalQuizData = quizData;
         imageViewStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
                 Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
-                intent.putExtra("quizData", finalQuizData);
+                intent.putExtra("quizData", quizData);
                 startActivity(intent);
             }
         });

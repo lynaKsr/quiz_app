@@ -6,11 +6,13 @@ import android.os.Parcelable;
 public class QuizData implements Parcelable {
 
     private String username;
+    private String email;
     private String category;
     private int totalQuestions;
 
     public QuizData() {
         this.username = "";
+        this.email = "";
         this.category = "";
         this.totalQuestions = 0;
     }
@@ -55,6 +57,13 @@ public class QuizData implements Parcelable {
 
     public void setTotalQuestions(int totalQuestions) {
         this.totalQuestions = totalQuestions;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getEmail() {
+        return email;
     }
 
     @Override

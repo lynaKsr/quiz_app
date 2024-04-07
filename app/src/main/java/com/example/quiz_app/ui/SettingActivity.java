@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.model.QuestionModel;
 import com.example.quiz_app.utils.LanguageManager;
@@ -29,6 +30,7 @@ public class SettingActivity extends AppCompatActivity {
     Button buttonLogout;
     Button btnSaveQuestion;
     Button btnSaveCategory;
+    QuizData quizData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +44,15 @@ public class SettingActivity extends AppCompatActivity {
         btnSaveQuestion = findViewById(R.id.btnSaveQuestion);
         btnSaveCategory = findViewById(R.id.btnSaveCategory);
 
+        quizData = (QuizData) getIntent().getSerializableExtra("quizData");
+
         // chargement des préférences utilisateur pour afficher les valeurs actuelles
         SharedPreferences preferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
         String username = preferences.getString("USERNAME", "");
         editTextUserName.setText(username);
+
+        if(quizData != null)
+            quizData.setUsername(username);
 
         String languageEnabled = preferences.getString("LANGUAGE", "");
         switchLanguage.setChecked(languageEnabled.equals("true"));

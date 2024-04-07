@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.model.QuestionModel;
 import com.example.quiz_app.utils.LanguageManager;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button buttonStart;
     Button buttonExit;
+    QuizData quizData;
 
 
     @SuppressLint("MissingInflatedId")
@@ -33,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
         buttonStart = findViewById(R.id.buttonStart);
         buttonExit = findViewById(R.id.buttonExit);
 
+        // création de l'objet QuizData avec les informations nécessaires
+        quizData = new QuizData();
+
         buttonStart.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.putExtra("quizData", quizData);
             startActivity(intent);
         });
 

@@ -20,6 +20,7 @@ import com.example.quiz_app.common.enumerate.TypeQuestionEnum;
 import com.example.quiz_app.model.AnswerModel;
 import com.example.quiz_app.model.CategoryModel;
 import com.example.quiz_app.model.QuestionModel;
+import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Arrays;
@@ -52,6 +53,8 @@ public class SaveQuestionActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_question);
+
+        LanguageManager.updateLanguage(this);
 
         spinner = findViewById(R.id.spCategory);
 

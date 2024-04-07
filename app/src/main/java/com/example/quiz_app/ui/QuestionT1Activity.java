@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.quiz_app.R;
 import com.example.quiz_app.common.adapter.QuestionTypeAdapter;
 import com.example.quiz_app.model.QuestionModel;
+import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -29,6 +30,8 @@ public class QuestionT1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_t1);
+
+        LanguageManager.updateLanguage(this);
 
         viewPagerAnswer = findViewById(R.id.viewPagerAnswer);
         questionChoose = findViewById(R.id.questionChoose1);

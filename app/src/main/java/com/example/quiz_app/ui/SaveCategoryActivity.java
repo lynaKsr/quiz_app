@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quiz_app.R;
 import com.example.quiz_app.model.CategoryModel;
+import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -26,6 +27,8 @@ public class SaveCategoryActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_category);
+
+        LanguageManager.updateLanguage(this);
 
         btnSave = findViewById(R.id.btnSave);
         code = findViewById(R.id.edCode);

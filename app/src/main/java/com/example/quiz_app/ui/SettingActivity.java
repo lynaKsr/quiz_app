@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -27,9 +24,7 @@ import java.util.List;
 public class SettingActivity extends AppCompatActivity {
 
     EditText editTextUserName;
-    Switch swithDarkMode;
-
-    RadioGroup radioGroupLanguage;
+    Switch switchLanguage;
     Button buttonSave;
     Button buttonLogout;
     Button btnSaveQuestion;
@@ -41,8 +36,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(com.example.quiz_app.R.layout.activity_setting);
 
         editTextUserName = findViewById(R.id.editTextUsername);
-        swithDarkMode = findViewById(R.id.switchDarkMode);
-        radioGroupLanguage = findViewById(R.id.radioGroupLanguage);
+        switchLanguage = findViewById(R.id.switchLanguage);
         buttonSave = findViewById(R.id.buttonSave);
         buttonLogout = findViewById(R.id.buttonLogout);
         btnSaveQuestion = findViewById(R.id.btnSaveQuestion);
@@ -53,21 +47,20 @@ public class SettingActivity extends AppCompatActivity {
         String username = preferences.getString("USERNAME", "");
         editTextUserName.setText(username);
 
-        boolean darkModeEnabled = preferences.getBoolean("DARK_MODE", false);
-        swithDarkMode.setChecked(darkModeEnabled);
-
-        //gestion des changement de langue dans le radio group (à faire)
-        radioGroupLanguage.setOnCheckedChangeListener((group, checkedId) -> {
-            // verification de quel bouton radio est selectionné
-            if(checkedId == R.id.radioButtonEnglish) {
-                LanguageManager.setLanguage(SettingActivity.this, "en"); // changer en anglais
-            }
-
-            if(checkedId == R.id.radioButtonFrench) {
+        String languageEnabled = preferences.getString("LANGUAGE", "");
+        switchLanguage.setChecked(languageEnabled.equals("true"));
+        switchLanguage.setText(languageEnabled.equals("true") ? R.string.french : R.string.english);
+        switchLanguage.setOnCheckedChangeListener(((buttonView, isChecked) -> {
+            if (isChecked) {
                 LanguageManager.setLanguage(SettingActivity.this, "fr");
+                switchLanguage.setText(R.string.french);
             }
-        });
 
+            else {
+                LanguageManager.setLanguage(SettingActivity.this, "en");
+                switchLanguage.setText(R.string.english);
+            }
+        }));
         // gestion du clic sur le bouton "logout"
         buttonLogout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
@@ -105,12 +98,7 @@ public class SettingActivity extends AppCompatActivity {
             // enregistrement des changements de langue
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("USERNAME", newUserName);
-            editor.putBoolean("DARK_MODE", swithDarkMode.isChecked());
-            // enregistrement de la langue selectionnée
-            int selectedLanguageId = radioGroupLanguage.getCheckedRadioButtonId();
-            RadioButton selectedRadioButton = findViewById(selectedLanguageId);
-            String selectedLanguage = selectedRadioButton.getText().toString();
-            editor.putString("LANGUAGE", selectedLanguage);
+            editor.putString("LANGUAGE", String.valueOf(switchLanguage.isChecked()));
             editor.apply();
 
             // redémarrage de toutes les activités pour que les changement de langue prennent effet immédiatement

@@ -45,18 +45,18 @@
     <string name="response">entrez la bonne réponse</string>
     <string name="response_t4">réponse</string>
     <string name="true_false">"c'est vrai ou faux"</string>
-    <string name="language_switch">change la lange</string>
     <string name="theme_light">mode clair</string>
     <string name="theme_dark">mode sombre</string>
-    <string name="add_categogy">Add Categogy</string>
-    <string name="add_question">Add Question</string>
-    <string name="save_category">Save Category</string>
-    <string name="save_question">Save Question</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="name_cate">name cate</string>
-    <string name="code_cate">code cate</string>
+    <string name="enter_username">"entrez votre pseudo "</string>
+    <string name="save">"Enregistrer les changement "</string>
+    <string name="english">anglais</string>
+    <string name="french">français</string>
+    <string name="save_category">Enregistrer la categorie</string>
+    <string name="save_question">Enregister la question</string>
+    <string name="add_question">Ajouter une question</string>
+    <string name="add_category">"Ajouter une categorie "</string>
+    <string name="no">Non</string>
+    <string name="yes">Oui</string>
     <string name="textfill">hint</string>
-    <string name="_123">_123</string>
 
 </resources>

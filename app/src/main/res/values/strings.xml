@@ -54,10 +54,9 @@
     <string name="_123" translatable="false">123</string>
     <string name="code_cate" translatable="false">Code</string>
     <string name="name_cate" translatable="false">Name</string>
-    <string name="language_switch">English</string>
     <string name="theme_light">light mode\n</string>
     <string name="theme_dark">dark mode\n</string>
-    <string name="add_questions">add question</string>
+    <string name="add_question">add question</string>
     <string name="add_category">add category</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
@@ -68,4 +67,7 @@
     <string name="save">save changes\n</string>
     <string name="english">english</string>
     <string name="french">french</string>
+    <string name="settings">SETTINGS</string>
+    <string name="connected_with_email">"you are connected with the email address %1$s and holder %2$s "</string>
+    <string name="modify_username">you can modify your username</string>
 </resources>

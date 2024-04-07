@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 
 import com.example.quiz_app.R;
-
+import com.example.quiz_app.utils.LanguageManager;
 
 
 public class QuestionT4Activity extends AppCompatActivity {
@@ -22,6 +22,8 @@ public class QuestionT4Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_t4);
+
+        LanguageManager.updateLanguage(this);
 
         buttonNext = findViewById(R.id.buttonNext4);
 

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quiz_app.R;
 import com.example.quiz_app.model.QuestionModel;
+import com.example.quiz_app.utils.LanguageManager;
 
 import java.util.List;
 public class QuestionT2Activity extends AppCompatActivity {
@@ -27,6 +28,8 @@ public class QuestionT2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_t2);
+
+        LanguageManager.updateLanguage(this);
 
         buttonNext2 = findViewById(R.id.buttonNext2);
         back = findViewById(R.id.back);

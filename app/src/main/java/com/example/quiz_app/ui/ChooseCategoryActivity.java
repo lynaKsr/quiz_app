@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.quiz_app.R;
 import com.example.quiz_app.common.enumerate.TypeQuestionEnum;
 import com.example.quiz_app.utils.CategoryQuestionMapper;
+import com.example.quiz_app.utils.LanguageManager;
 
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_category);
+
+        LanguageManager.updateLanguage(this);
 
         cinemaImage = findViewById(R.id.cinemaImage);
         musicImage = findViewById(R.id.musicImage);

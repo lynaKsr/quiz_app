@@ -75,9 +75,7 @@ public class AccueilActivity extends AppCompatActivity {
             editTextPseudo.setClickable(false);
             editTextPseudo.setCursorVisible(false);
             buttonConfirm.setEnabled(false);
-            editTextPseudo.setOnClickListener(v -> {
-                Toast.makeText(AccueilActivity.this, "To modify the username, please go to settings", Toast.LENGTH_SHORT).show();
-            });
+            editTextPseudo.setOnClickListener(v -> Toast.makeText(AccueilActivity.this, "To modify the username, please go to settings", Toast.LENGTH_SHORT).show());
         } else {
 
             // gestion du click sur le bouton "confirmer" pour le choix du nom d'utilisateur
@@ -102,14 +100,11 @@ public class AccueilActivity extends AppCompatActivity {
                 }
             });
         }
-        imageViewStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
-                Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
-                intent.putExtra("quizData", quizData);
-                startActivity(intent);
-            }
+        imageViewStart.setOnClickListener(v -> {
+            // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
+            Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
+            intent.putExtra("quizData", quizData);
+            startActivity(intent);
         });
     }
 

@@ -7,27 +7,59 @@
     android:background="#FFEEE2"
     tools:context=".ui.AccueilActivity">
 
+    <ImageView
+        android:id="@+id/ImagePseudo"
+        android:layout_width="185dp"
+        android:layout_height="197dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/AccueilImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/process"
+        tools:ignore="ImageContrastCheck" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="190dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="11dp"
+        android:backgroundTint="#9F7E69"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/settings"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImagePseudo" />
+
+    <TextView
+        android:id="@+id/user_details"
+        android:layout_width="202dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/connected_with_email"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logout"
+        tools:ignore="TextSizeCheck" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linear_layout_text_input"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="230dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/ImagePseudo"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_margin="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/AccueilImage"
-            app:srcCompat="@drawable/process"
-            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/TextViewPseudo"
@@ -42,8 +74,7 @@
             android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="bold"
-            tools:ignore="TextSizeCheck"
-            tools:layout_editor_absoluteY="16dp" />
+            tools:ignore="TextSizeCheck" />
 
         <EditText
             android:id="@+id/editTextPseudo"
@@ -88,35 +119,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:baselineAlignBottom="false"
-            app:srcCompat="@drawable/start__1_"
-            android:contentDescription="@string/startImage" />
+            android:contentDescription="@string/startImage"
+            app:srcCompat="@drawable/start__1_" />
 
-        <TextView
-            android:id="@+id/user_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/connected_with_email"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            tools:ignore="TextSizeCheck" />
-
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#9F7E69"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/settings"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

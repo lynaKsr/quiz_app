@@ -35,35 +35,17 @@ public class QuizData implements Parcelable {
         }
     };
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getCategory() {
-        return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
     }
 
-    public int getTotalQuestions() {
-        return totalQuestions;
-    }
-
-    public void setTotalQuestions(int totalQuestions) {
-        this.totalQuestions = totalQuestions;
-    }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-    public String getEmail() {
-        return email;
     }
 
     @Override

@@ -18,6 +18,9 @@ import com.example.quiz_app.R;
 import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText editTextEmail, editTextPassWord;
@@ -94,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(),
+                            Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
                     });

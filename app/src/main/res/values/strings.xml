@@ -70,4 +70,5 @@
     <string name="settings">settings</string>
     <string name="connected_with_email">"you are connected with the email address %1$s and holder %2$s "</string>
     <string name="modify_username">you can modify your username</string>
+    <string name="startImage">description for start image</string>
 </resources>

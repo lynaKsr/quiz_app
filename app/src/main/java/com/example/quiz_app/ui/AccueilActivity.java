@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,7 +63,11 @@ public class AccueilActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
         String pseudo = preferences.getString("USERNAME", "");
 
+        QuizData quizData = null;
         if (!pseudo.isEmpty()) {
+            quizData = new QuizData();
+            quizData.setUsername(pseudo);
+
             editTextPseudo.setText(pseudo);
             editTextPseudo.setEnabled(false);
             editTextPseudo.setFocusable(false);
@@ -94,11 +99,13 @@ public class AccueilActivity extends AppCompatActivity {
             });
         }
 
+        QuizData finalQuizData = quizData;
         imageViewStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
                 Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
+                intent.putExtra("quizData", finalQuizData);
                 startActivity(intent);
             }
         });

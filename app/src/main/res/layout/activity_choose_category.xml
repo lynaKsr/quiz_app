@@ -7,21 +7,20 @@
     android:background="#FFEEE2"
     tools:context=".ui.ChooseCategoryActivity">
 
+
     <TextView
         android:id="@+id/themeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/choose_category"
         android:textColor="@color/black"
-        android:textSize="48sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <LinearLayout
         android:id="@+id/linearLayoutCinema"

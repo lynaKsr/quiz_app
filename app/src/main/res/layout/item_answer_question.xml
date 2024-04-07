@@ -70,7 +70,8 @@
         android:id="@+id/csMultipleChoice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/buttonChoose1"

@@ -38,8 +38,6 @@
     <string name="check_answer">check the correct answer</string>
     <string name="answer_1">answer 1</string>
     <string name="answer_2">answer 2</string>
-    <string name="name_cate">name cate</string>
-    <string name="code_cate">code cate</string>
     <string name="answer_3">answer 3</string>
     <string name="answer_4">answer 4</string>
     <string name="question_03" translatable="false">question 03</string>
@@ -50,16 +48,24 @@
     <string name="question_04" translatable="false">question 04\n</string>
     <string name="response">"enter the correct answer "</string>
     <string name="response_t4">response</string>
-    <string name="language_switch">language switch</string>
-    <string name="theme_light">theme light</string>
-    <string name="theme_dark">theme dark</string>
-    <string name="add_categogy">Add Categogy</string>
-    <string name="add_question">Add Question</string>
-    <string name="save_category">Save Category</string>
-    <string name="save_question">Save Question</string>
+    <string name="save_cate" translatable="false">Save C</string>
+    <string name="code" translatable="false">Code</string>
+    <string name="name" translatable="false">Name</string>
+    <string name="_123" translatable="false">123</string>
+    <string name="code_cate" translatable="false">Code</string>
+    <string name="name_cate" translatable="false">Name</string>
+    <string name="language_switch">English</string>
+    <string name="theme_light">light mode\n</string>
+    <string name="theme_dark">dark mode\n</string>
+    <string name="add_questions">add question</string>
+    <string name="add_category">add category</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
-    <string name="textfill">hint</string>
-    <string name="_123">_123</string>
-
+    <string name="save_category">Save category</string>
+    <string name="save_question">Save question</string>
+    <string name="textfill">Text fill</string>
+    <string name="enter_username">enter user name</string>
+    <string name="save">save changes\n</string>
+    <string name="english">english</string>
+    <string name="french">french</string>
 </resources>

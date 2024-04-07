@@ -2,12 +2,14 @@ package com.example.quiz_app.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.quiz_app.R;
 import com.example.quiz_app.model.QuestionModel;
+import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -19,18 +21,17 @@ public class MainActivity extends AppCompatActivity {
     Button buttonStart;
     Button buttonExit;
 
-    Button btnSaveQuestion;
-    Button btnSaveCategory;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        LanguageManager.updateLanguage(this);
+
         buttonStart = findViewById(R.id.buttonStart);
         buttonExit = findViewById(R.id.buttonExit);
-        btnSaveQuestion = findViewById(R.id.btnSaveQuestion);
-        btnSaveCategory = findViewById(R.id.btnSaveCategory);
 
         buttonStart.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -38,16 +39,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonExit.setOnClickListener(v -> finish());
-
-        btnSaveQuestion.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SaveQuestionActivity.class);
-            startActivity(intent);
-        });
-
-        btnSaveCategory.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SaveCategoryActivity.class);
-            startActivity(intent);
-        });
 
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         CollectionReference questionRef = firebaseFirestore.collection("develop")

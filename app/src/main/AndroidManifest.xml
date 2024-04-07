@@ -24,9 +24,6 @@
             android:name=".ui.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".QuestionT4Activity"
-            android:exported="false" />
-        <activity
             android:name=".ui.QuestionT3Activity"
             android:exported="false" />
         <activity

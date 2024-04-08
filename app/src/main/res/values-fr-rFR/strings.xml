@@ -58,8 +58,14 @@
     <string name="no">Non</string>
     <string name="yes">Oui</string>
     <string name="textfill">hint</string>
-    <string name="settings">paramètres</string>
     <string name="connected_with_email">vous etes connecté avec l\'adresse mail suivante %1$s et le pseudo %2$s</string>
     <string name="modify_username">"vous pouvez modifier votre pseudo "</string>
+    <string name="startImage">description for start image</string>
+    <string name="logo_player">logo</string>
+    <string name="player_name">Nom Joueur</string>
+    <string name="settings">Paramètres</string>
+    <string name="share">Partager</string>
+    <string name="home">Accueil</string>
+
 
 </resources>

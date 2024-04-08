@@ -10,10 +10,13 @@ import android.widget.Toast;
 import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.common.enumerate.TypeQuestionEnum;
+import com.example.quiz_app.model.QuestionModel;
 import com.example.quiz_app.utils.CategoryQuestionMapper;
 import com.example.quiz_app.utils.LanguageManager;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChooseCategoryActivity extends AppCompatActivity {
 
@@ -22,6 +25,8 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     ImageView knowledgeImage;
     ImageView cinemaImage;
     QuizData quizData;
+
+    private Map<QuestionModel, String> answers = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         knowledgeImage = findViewById(R.id.KnowledgeImage);
         sportImage = findViewById(R.id.sportImage);
 
-        quizData = (QuizData) getIntent().getSerializableExtra("quizData");
+        quizData = new QuizData();
 
         cinemaImage.setOnClickListener(v -> {
             quizData.setCategory("cinema");

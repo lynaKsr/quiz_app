@@ -1,5 +1,7 @@
 package com.example.quiz_app.model;
 
+import java.util.Objects;
+
 public class AnswerModel {
     private int code;
     private String answer;
@@ -31,5 +33,23 @@ public class AnswerModel {
                 "code=" + code +
                 ", answer='" + answer + '\''+
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AnswerModel that = (AnswerModel) o;
+
+        if (code != that.code) return false;
+        return Objects.equals(answer, that.answer);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = code;
+        result = 31 * result + (answer != null ? answer.hashCode() : 0);
+        return result;
     }
 }

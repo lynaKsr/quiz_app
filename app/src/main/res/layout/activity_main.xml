@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageMain"
         android:layout_width="416dp"
-        android:layout_height="354dp"
+        android:layout_height="300dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="24dp"
@@ -27,7 +27,7 @@
         android:layout_width="355dp"
         android:layout_height="63dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="22dp"
         android:backgroundTint="#D2BBA0"
         android:fontFamily="sans-serif-smallcaps"
@@ -44,7 +44,7 @@
         android:id="@+id/textViewAccueil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/WELCOME"
         android:textColor="@color/black"
@@ -71,6 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonStart"
+        app:layout_constraintVertical_bias="0.213" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

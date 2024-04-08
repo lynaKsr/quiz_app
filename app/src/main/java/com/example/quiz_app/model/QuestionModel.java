@@ -3,6 +3,7 @@ package com.example.quiz_app.model;
 import com.example.quiz_app.common.enumerate.TypeQuestionEnum;
 
 import java.util.List;
+import java.util.Objects;
 
 public class QuestionModel {
     private String cateCode;
@@ -73,5 +74,39 @@ public class QuestionModel {
                 ", exactlyAnswer=" + exactlyAnswer +
                 ", answerYN='" + answerYN + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        QuestionModel that = (QuestionModel) o;
+
+        if (exactlyAnswer != that.exactlyAnswer)
+            return false;
+        if (!Objects.equals(cateCode, that.cateCode))
+            return false;
+        if (!Objects.equals(question, that.question))
+            return false;
+        if (typeQuestionEnum != that.typeQuestionEnum)
+            return false;
+        if (!Objects.equals(answerModels, that.answerModels))
+            return false;
+
+        return Objects.equals(answerYN, that.answerYN);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cateCode != null ? cateCode.hashCode() : 0;
+        result = 31 * result + (question != null ? question.hashCode() : 0);
+        result = 31 * result + (typeQuestionEnum != null ? typeQuestionEnum.hashCode() : 0);
+        result = 31 * result + (answerModels != null ? answerModels.hashCode() : 0);
+        result = 31 * result + exactlyAnswer;
+        result = 31 * result + (answerYN != null ? answerYN.hashCode() : 0);
+        return result;
     }
 }

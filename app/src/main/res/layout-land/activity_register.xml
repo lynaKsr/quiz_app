@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFEEE2"
+    tools:context=".ui.RegisterActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBar_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="411dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewRegister"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/imageRegister"
+            app:srcCompat="@drawable/sign" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/email_input_register"
+                android:layout_width="355dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="22dp"
+                android:autofillHints="email"
+                android:background="@drawable/rectangle_arrondi"
+                android:ems="10"
+                android:hint="@string/Email"
+                android:inputType="text|textEmailAddress"
+                android:padding="18dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/password_input_register"
+                android:layout_width="355dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="22dp"
+                android:autofillHints="password"
+                android:background="@drawable/rectangle_arrondi"
+                android:hint="@string/Password"
+                android:inputType="text|textPassword"
+                android:padding="18dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="355dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="22dp"
+                android:backgroundTint="#D2BBA0"
+                android:padding="18dp"
+                android:text="@string/Register"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/loginNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:text="@string/login"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

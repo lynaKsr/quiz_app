@@ -87,7 +87,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                     // mise à jour de l'email dans l'objet QuizData
-                    quizData.setEmail(email);
+                    if(quizData != null) {
+                        quizData.setEmail(email);
+                    }
                     Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
                     // Transmission de l'objet QuizData à l'activité AccueilActivity
                     intent.putExtra("quizData", quizData);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFEEE2"
-    tools:context=".ui.QuestionT3Activity">
+    tools:context=".ui.QuestionT4Activity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -19,11 +19,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/questionChoose3"
+            android:id="@+id/questionChoose4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/question_03"
+            android:text="@string/question_04"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -44,7 +44,7 @@
             app:srcCompat="@drawable/back" />
 
         <TextView
-            android:id="@+id/count3"
+            android:id="@+id/count4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -60,41 +60,45 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textViewT3"
+        android:id="@+id/textViewT4"
         android:layout_width="355dp"
         android:layout_height="60dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="22dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/true_false"
+        android:text="@string/response"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         tools:ignore="TextSizeCheck" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="195dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="36dp"
-        android:background="#9F7E69"
-        android:text="@string/togglebutton"
-        android:textOff="@string/notCorrect"
-        android:textOn="@string/correct"
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="320dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="22dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/response_t4"
+        android:inputType="text"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewT3" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewT4" />
 
     <Button
-        android:id="@+id/buttonNext3"
+        android:id="@+id/buttonNext4"
         android:layout_width="220dp"
         android:layout_height="62dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#D2BBA0"
         android:fontFamily="sans-serif-smallcaps"
         android:padding="12dp"
@@ -102,9 +106,8 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton" />
-
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,8 +25,6 @@ public class AccueilActivity extends AppCompatActivity {
     EditText editTextPseudo;
     FirebaseUser user;
     ImageView imageViewStart;
-    QuizData quizData;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +42,6 @@ public class AccueilActivity extends AppCompatActivity {
 
         user = auth.getCurrentUser();
 
-        quizData = (QuizData) getIntent().getSerializableExtra("quizData");
-
         // mettre à jour le pseudo à chaque fois que l'activité est créée
         updateDisplayPseudo();
 
@@ -59,7 +55,6 @@ public class AccueilActivity extends AppCompatActivity {
 
         buttonLogout.setOnClickListener(v -> {
             Intent intent = new Intent(AccueilActivity.this, SettingActivity.class);
-            intent.putExtra("quizData", quizData);
             startActivity(intent);
         });
 
@@ -85,8 +80,6 @@ public class AccueilActivity extends AppCompatActivity {
                     // enregistrement du nom d'utilisateur dnas les préférences de l'application
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("USERNAME", newPseudo).apply();
-                    // Mettre à jour QuizData
-                    quizData.setUsername(newPseudo);
 
                     updateDisplayPseudo();
                     editTextPseudo.setEnabled(false); // Désactiver le champ de texte après avoir choisi le pseudo
@@ -102,16 +95,13 @@ public class AccueilActivity extends AppCompatActivity {
         imageViewStart.setOnClickListener(v -> {
             // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
             Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
-            intent.putExtra("quizData", quizData);
             startActivity(intent);
         });
     }
-
     private void updateDisplayPseudo() {
         SharedPreferences preferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
         String pseudo = preferences.getString("USERNAME", "");
         textView.setText(getString(R.string.connected_with_email, user.getEmail(), pseudo));
     }
-
 
 }

@@ -5,20 +5,15 @@ import android.os.Parcelable;
 
 public class QuizData implements Parcelable {
 
-    private String username;
-    private String email;
     private String category;
     private int totalQuestions;
 
     public QuizData() {
-        this.username = "";
-        this.email = "";
         this.category = "";
         this.totalQuestions = 0;
     }
 
     protected QuizData(Parcel in) {
-        username = in.readString();
         category = in.readString();
         totalQuestions = in.readInt();
     }
@@ -35,18 +30,11 @@ public class QuizData implements Parcelable {
         }
     };
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public void setCategory(String category) {
         this.category = category;
     }
+    public String getCategory() { return this.category; }
 
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     @Override
     public int describeContents() {
@@ -55,7 +43,6 @@ public class QuizData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(username);
         dest.writeString(category);
         dest.writeInt(totalQuestions);
     }

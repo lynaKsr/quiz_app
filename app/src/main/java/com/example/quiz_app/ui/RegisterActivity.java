@@ -28,7 +28,6 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textView;
-    QuizData quizData;
 
 
     @Override
@@ -57,13 +56,9 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.loginNow);
         textView.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            intent.putExtra("quizData", quizData);
             startActivity(intent);
             finish();
         });
-
-        // récupération de l'objet QuizData transmis depuis LoginActivity
-        quizData = (QuizData) getIntent().getSerializableExtra("quizData");
 
         buttonRegister.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
@@ -85,12 +80,10 @@ public class RegisterActivity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            quizData.setEmail(email);
                             Toast.makeText(RegisterActivity.this, "Account created",
                                     Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                            intent.putExtra("quizData", quizData);
                             startActivity(intent);
                             finish();
 

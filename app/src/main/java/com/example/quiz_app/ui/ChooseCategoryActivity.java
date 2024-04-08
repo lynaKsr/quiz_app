@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,7 +25,6 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     ImageView sportImage;
     ImageView knowledgeImage;
     ImageView cinemaImage;
-    QuizData quizData;
 
     private Map<QuestionModel, String> answers = new HashMap<>();
 
@@ -40,55 +40,47 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         knowledgeImage = findViewById(R.id.KnowledgeImage);
         sportImage = findViewById(R.id.sportImage);
 
-        quizData = new QuizData();
-
         cinemaImage.setOnClickListener(v -> {
-            quizData.setCategory("cinema");
             // Lorsque l'utilisateur sélectionne la catégorie cinema
             Toast.makeText(ChooseCategoryActivity.this, "cinema category selected with success", Toast.LENGTH_SHORT).show();
 
-            List<TypeQuestionEnum> types = CategoryQuestionMapper.getTypeQuestionsForCategory("cinema");
-
-            Intent intent = getIntentForCategory(types);
-            intent.putExtra("quizData", quizData);
-            startActivity(intent);
+            sendDataToNextActivity("cinema");
         });
 
         musicImage.setOnClickListener(v -> {
-            quizData.setCategory("music");
             // Lorsque l'utilisateur sélectionne la catégorie musique
             Toast.makeText(ChooseCategoryActivity.this, "music category selected with success", Toast.LENGTH_SHORT).show();
 
-            List<TypeQuestionEnum> types = CategoryQuestionMapper.getTypeQuestionsForCategory("music");
-
-            Intent intent = getIntentForCategory(types);
-            intent.putExtra("quizData", quizData);
-            startActivity(intent);
+            sendDataToNextActivity("music");
         });
 
         knowledgeImage.setOnClickListener(v -> {
-            quizData.setCategory("knowledge");
             // Lorsque l'utilisateur sélectionne la catégorie connaissance
             Toast.makeText(ChooseCategoryActivity.this, "knowledge category selected with success", Toast.LENGTH_SHORT).show();
 
-            List<TypeQuestionEnum> types = CategoryQuestionMapper.getTypeQuestionsForCategory("knowledge");
-
-            Intent intent = getIntentForCategory(types);
-            intent.putExtra("quizData", quizData);
-            startActivity(intent);
+            sendDataToNextActivity("knowledge");
         });
 
         sportImage.setOnClickListener(v -> {
-            quizData.setCategory("sport");
             // Lorsque l'utilisateur sélectionne la catégorie sport
             Toast.makeText(ChooseCategoryActivity.this, "sport category selected with success", Toast.LENGTH_SHORT).show();
 
-            List<TypeQuestionEnum> types = CategoryQuestionMapper.getTypeQuestionsForCategory("sport");
-
-            Intent intent = getIntentForCategory(types);
-            intent.putExtra("quizData", quizData);
-            startActivity(intent);
+            sendDataToNextActivity("sport");
         });
+    }
+
+    private void sendDataToNextActivity(String category) {
+        QuizData quizData = new QuizData();
+        quizData.setCategory(category);
+
+        // Ajout de logs pour vérifier les données
+        Log.d("ChooseCategoryActivity", "Catégorie sélectionnée : " + category);
+        Log.d("ChooseCategoryActivity", "quizData créé avec catégorie : " + quizData.getCategory());
+
+        // Création d'un Intent pour la nouvelle activité et y ajouter l'objet quizData
+        Intent intent = getIntentForCategory(CategoryQuestionMapper.getTypeQuestionsForCategory(category));
+        intent.putExtra("quizData", quizData);
+        startActivity(intent);
     }
 
     private Intent getIntentForCategory(List<TypeQuestionEnum> types) {

@@ -10,7 +10,7 @@
 
     <Switch
         android:id="@+id/switchLanguage"
-        android:layout_width="112dp"
+        android:layout_width="134dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="36dp"

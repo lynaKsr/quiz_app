@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quiz_app"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.BilanActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.QuestionT4Activity"
             android:exported="false" />
@@ -53,15 +56,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.SaveQuestionActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.SaveCategoryActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

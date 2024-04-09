@@ -1,5 +1,6 @@
 package com.example.quiz_app.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.common.adapter.QuestionTypeAdapter;
 import com.example.quiz_app.model.QuestionModel;
@@ -51,6 +53,11 @@ public class QuestionT1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_t1);
 
+        Intent intentCategory = getIntent();
+        if(intentCategory != null) {
+            QuizData quizData = intentCategory.getParcelableExtra("quizData");
+        }
+
         LanguageManager.updateLanguage(this);
 
         viewPagerAnswer = findViewById(R.id.viewPagerAnswer);
@@ -60,42 +67,43 @@ public class QuestionT1Activity extends AppCompatActivity {
         backBtn = findViewById(R.id.back);
 
         Button buttonNext = findViewById(R.id.buttonNext1);
-        buttonNext.setOnClickListener(v ->{
+        buttonNext.setOnClickListener(v -> {
             boolean isLastPage = (viewPagerAnswer.getCurrentItem() + 1) >= Objects.requireNonNull(viewPagerAnswer.getAdapter()).getItemCount();
 
-            if ((viewPagerAnswer.getCurrentItem() +1 ) != Objects.requireNonNull(viewPagerAnswer.getAdapter()).getItemCount()){
-                if (currentPosition < 0){
+            if ((viewPagerAnswer.getCurrentItem() + 1) != Objects.requireNonNull(viewPagerAnswer.getAdapter()).getItemCount()) {
+                if (currentPosition < 0) {
                     Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     String currentAnswer = map.getOrDefault(currentQuestion, "-1");
 
-                    if (currentAnswer == null || currentAnswer.equals("-1")){
+                    if (currentAnswer == null || currentAnswer.equals("-1")) {
                         Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    } else {
                         currentPosition = -1;
                         currentQuestion = null;
-                        viewPagerAnswer.setCurrentItem(viewPagerAnswer.getCurrentItem() +1);
+                        viewPagerAnswer.setCurrentItem(viewPagerAnswer.getCurrentItem() + 1);
                     }
                 }
             }
 
             // si c'est la derniere question
             if (isLastPage) {
-                if (currentPosition < 0){
+                if (currentPosition < 0) {
                     Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
                     String currentAnswer = map.getOrDefault(currentQuestion, "-1");
 
-                    if (currentAnswer == null || currentAnswer.equals("-1")){
+                    if (currentAnswer == null || currentAnswer.equals("-1")) {
                         Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(),"Finish", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(QuestionT1Activity.this, BilanActivity.class);
+                        startActivity(intent);
+                        finish();
 
                         List<ResultAnswerModel> resultAnswerModels = new ArrayList<>();
-                        for (Map.Entry<QuestionModel, String> entry : map.entrySet()){
+                        for (Map.Entry<QuestionModel, String> entry : map.entrySet()) {
                             ResultAnswerModel resultAnswerModel = new ResultAnswerModel();
                             resultAnswerModel.setQuestionModel(entry.getKey());
                             resultAnswerModel.setAnswerYN(entry.getValue());
@@ -111,7 +119,7 @@ public class QuestionT1Activity extends AppCompatActivity {
                                 .collection("answer")
                                 .add(userAnswerModel)
                                 .addOnSuccessListener(documentReference -> {
-                                    Toast.makeText(this, "DocumentSnapshot added with ID: "+documentReference.getId(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this, "DocumentSnapshot added with ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
                                     Log.d("SAVE_ANSWER", "DocumentSnapshot added with ID: " + documentReference.getId());
                                     finish();
                                 })
@@ -139,13 +147,13 @@ public class QuestionT1Activity extends AppCompatActivity {
                     map.put(questionModel, answer);
                     currentPosition = position;
                     currentQuestion = questionModel;
-                } );
+
+                });
             }
         });
 
         backBtn.setOnClickListener(v ->
-            finish());
+                finish());
     }
-
 }
 

@@ -49,13 +49,14 @@ public class QuestionTypeActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     private QuizData quizData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_type);
 
         Intent intentCategory = getIntent();
-        if(intentCategory != null) {
+        if (intentCategory != null) {
             quizData = intentCategory.getParcelableExtra("quizData");
             if (quizData != null) {
                 Log.d("QuestionTypeActivity", "QuizData récupérée avec succès : " + quizData);
@@ -71,6 +72,9 @@ public class QuestionTypeActivity extends AppCompatActivity {
 
         questionChoose = findViewById(R.id.questionChoose1);
         backBtn = findViewById(R.id.back);
+
+        Intent intentBundle = getIntent();
+        String cateCode = intentBundle.getStringExtra("cateCode");
 
         Button buttonNext = findViewById(R.id.buttonNext1);
         buttonNext.setOnClickListener(v -> {
@@ -143,7 +147,7 @@ public class QuestionTypeActivity extends AppCompatActivity {
                 .document("quizz")
                 .collection("question");
 
-        Query query = questionRef.whereEqualTo("cateCode", "CINEMA");
+        Query query = questionRef.whereEqualTo("cateCode", cateCode);
         query.addSnapshotListener((value, error) -> {
             if (value != null) {
                 List<QuestionModel> questionModels = value.toObjects(QuestionModel.class);

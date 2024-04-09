@@ -37,12 +37,16 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
 
     }
 
+    // cette méthode est appellée lorque la RecyclerView a besoin d'un nouveau ViewHolder pour repésenter un type de réponse
+    // elle crée un pageVH qui contient les vues pour chaque élément de item_answer_question
     @NonNull
     @Override
     public PageVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new PageVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_answer_question, parent, false));
     }
 
+    // cette methode est appellée lorsque RecyclerView souhaite afficher les questions à une position spécifiques
+    // les différentes vues de type de questions sont affichées ou masquées en fonction du type de question
     @Override
     public void onBindViewHolder(@NonNull PageVH holder, int position) {
         QuestionModel questionModel = questionModels.get(position);
@@ -59,15 +63,13 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
             setAnswerClick(holder.buttonChoose2, questionModel, questionModel.getExactlyAnswer() == 2 ? "Y" : "N", position);
             setAnswerClick(holder.buttonChoose3, questionModel, questionModel.getExactlyAnswer() == 3 ? "Y" : "N", position);
             setAnswerClick(holder.buttonChoose4, questionModel, questionModel.getExactlyAnswer() == 4 ? "Y" : "N", position);
-        } else if(questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.YES_NO)) {
+        }
+        else if (questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.YES_NO)) {
             holder.csMultipleChoice.setVisibility(View.GONE);
             holder.csYN.setVisibility(View.VISIBLE);
 
             setAnswerClick(holder.ansY, questionModel, "Y", position);
             setAnswerClick(holder.ansN, questionModel, "N", position);
-        } else if (questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.FILL_THE_BLANK)) {
-            holder.csMultipleChoice.setVisibility(View.GONE);
-            holder.csYN.setVisibility(View.GONE);
         }
 
         textView.setText(questionModel.getQuestion());
@@ -96,6 +98,7 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
         final ConstraintLayout csMultipleChoice;
 
         final ConstraintLayout csYN;
+
         final RadioGroup rdYN;
 
         final RadioButton ansY;

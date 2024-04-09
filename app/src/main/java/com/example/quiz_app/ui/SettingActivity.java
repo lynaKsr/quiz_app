@@ -89,7 +89,6 @@ public class SettingActivity extends AppCompatActivity {
             if (value != null) {
                 List<QuestionModel> questionModels = value.toObjects(QuestionModel.class);
                 System.out.println("questionList: " + questionModels);
-                //viewPagerAnswer.setAdapter(new QuestionT1Adapter(getApplicationContext(), questionModels, questionChoose));
             }
         });
 

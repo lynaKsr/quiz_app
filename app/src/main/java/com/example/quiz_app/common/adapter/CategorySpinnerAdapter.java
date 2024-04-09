@@ -12,6 +12,7 @@ import com.example.quiz_app.model.CategoryModel;
 
 import java.util.List;
 
+// Classe de base pour l'adaptatateur spinner de catégorie quand on fait un ajoute une question d'une catégorie quelconque dans le settings
 public class CategorySpinnerAdapter extends BaseAdapter {
 
     private final List<CategoryModel> categories;
@@ -38,6 +39,7 @@ public class CategorySpinnerAdapter extends BaseAdapter {
         return position;
     }
 
+    // retourner la vue qui présente chaque caté dans la liste
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
@@ -57,6 +59,7 @@ public class CategorySpinnerAdapter extends BaseAdapter {
         return view;
     }
 
+    // classe interne statique pour maintenir une référence aux vues dans chaque caté de la liste pour éviter d'appeller findViewById à chaque fois on appelle getView()
     private static class CategorySpinnerViewHolder {
         final TextView name;
 

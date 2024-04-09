@@ -48,6 +48,7 @@ public class QuestionTypeActivity extends AppCompatActivity {
 
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+    private QuizData quizData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,12 @@ public class QuestionTypeActivity extends AppCompatActivity {
 
         Intent intentCategory = getIntent();
         if(intentCategory != null) {
-            QuizData quizData = intentCategory.getParcelableExtra("quizData");
+            quizData = intentCategory.getParcelableExtra("quizData");
+            if (quizData != null) {
+                Log.d("QuestionTypeActivity", "QuizData récupérée avec succès : " + quizData);
+            } else {
+                Log.d("QuestionTypeActivity", "Aucune donnée QuizData trouvée dans l'intent");
+            }
         }
 
         LanguageManager.updateLanguage(this);
@@ -99,6 +105,7 @@ public class QuestionTypeActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(QuestionTypeActivity.this, BilanActivity.class);
+                        intent.putExtra("quizData", quizData);
                         startActivity(intent);
                         finish();
 

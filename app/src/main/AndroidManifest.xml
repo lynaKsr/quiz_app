@@ -54,9 +54,6 @@
             android:name=".ui.SettingActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".ui.SettingActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

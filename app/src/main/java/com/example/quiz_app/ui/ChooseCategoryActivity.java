@@ -85,10 +85,9 @@ public class ChooseCategoryActivity extends AppCompatActivity {
 
     private Intent getIntentForCategory(List<TypeQuestionEnum> types) {
         Intent intent;
-        if (types != null && types.contains(TypeQuestionEnum.MULTIPLE_CHOICE)) {
-            intent = new Intent(this, QuestionT1Activity.class);
-        } else if (types != null && types.contains(TypeQuestionEnum.YES_NO)) {
-            intent = new Intent(this, QuestionT2Activity.class);
+        if (types != null) {
+            intent = new Intent(this, QuestionTypeActivity.class);
+
         } else {
             intent = new Intent(this, AccueilActivity.class);
         }

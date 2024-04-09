@@ -49,7 +49,6 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
         if (questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.MULTIPLE_CHOICE)) {
             holder.csMultipleChoice.setVisibility(View.VISIBLE);
             holder.csYN.setVisibility(View.GONE);
-            holder.csFillBlank.setVisibility(View.GONE);
 
             holder.buttonChoose1.setText(questionModel.getAnswerModels().get(0).getAnswer());
             holder.buttonChoose2.setText(questionModel.getAnswerModels().get(1).getAnswer());
@@ -63,15 +62,12 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
         } else if(questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.YES_NO)) {
             holder.csMultipleChoice.setVisibility(View.GONE);
             holder.csYN.setVisibility(View.VISIBLE);
-            holder.csFillBlank.setVisibility(View.GONE);
 
             setAnswerClick(holder.ansY, questionModel, "Y", position);
             setAnswerClick(holder.ansN, questionModel, "N", position);
         } else if (questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.FILL_THE_BLANK)) {
             holder.csMultipleChoice.setVisibility(View.GONE);
             holder.csYN.setVisibility(View.GONE);
-            holder.csFillBlank.setVisibility(View.VISIBLE);
-
         }
 
         textView.setText(questionModel.getQuestion());
@@ -100,8 +96,6 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
         final ConstraintLayout csMultipleChoice;
 
         final ConstraintLayout csYN;
-        final ConstraintLayout csFillBlank;
-
         final RadioGroup rdYN;
 
         final RadioButton ansY;
@@ -117,7 +111,6 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
 
             this.csMultipleChoice = row.findViewById(R.id.csMultipleChoice);
             this.csYN = row.findViewById(R.id.csYN);
-            this.csFillBlank = row.findViewById(R.id.csFillBlank);
 
             this.rdYN = row.findViewById(R.id.rdYN);
             this.ansY = row.findViewById(R.id.ansY);

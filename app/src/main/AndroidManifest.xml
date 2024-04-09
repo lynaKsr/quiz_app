@@ -21,19 +21,7 @@
             android:name=".ui.BilanActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.QuestionT4Activity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.SettingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.QuestionT3Activity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.QuestionT2Activity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.QuestionT1Activity"
+            android:name=".ui.QuestionTypeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ChooseCategoryActivity"

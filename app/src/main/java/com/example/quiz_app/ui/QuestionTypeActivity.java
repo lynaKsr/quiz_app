@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class QuestionT1Activity extends AppCompatActivity {
+public class QuestionTypeActivity extends AppCompatActivity {
 
     private ViewPager2 viewPagerAnswer;
 
@@ -51,7 +51,7 @@ public class QuestionT1Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_t1);
+        setContentView(R.layout.activity_question_type);
 
         Intent intentCategory = getIntent();
         if(intentCategory != null) {
@@ -98,7 +98,7 @@ public class QuestionT1Activity extends AppCompatActivity {
                     } else {
                         Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(QuestionT1Activity.this, BilanActivity.class);
+                        Intent intent = new Intent(QuestionTypeActivity.this, BilanActivity.class);
                         startActivity(intent);
                         finish();
 

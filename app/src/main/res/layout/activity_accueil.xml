@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -88,8 +88,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:baselineAlignBottom="false"
-            app:srcCompat="@drawable/start__1_"
-            android:contentDescription="@string/startImage" />
+            android:contentDescription="@string/startImage"
+            app:srcCompat="@drawable/start__1_" />
 
         <TextView
             android:id="@+id/user_details"

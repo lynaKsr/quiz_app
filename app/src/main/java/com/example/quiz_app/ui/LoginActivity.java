@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.quiz_app.QuizData;
 import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
             startActivity(intent);

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.quiz_app.R;
 import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,7 +46,6 @@ public class AccueilActivity extends AppCompatActivity {
             String pseudo = preferences.getString(user.getUid() + "USERNAME", "");
 
             if (!pseudo.isEmpty()) {
-
                 editTextPseudo.setText(pseudo);
                 editTextPseudo.setEnabled(false);
                 buttonConfirm.setEnabled(false);

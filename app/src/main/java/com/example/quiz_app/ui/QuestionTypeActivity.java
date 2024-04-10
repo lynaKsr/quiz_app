@@ -33,21 +33,13 @@ import java.util.Objects;
 public class QuestionTypeActivity extends AppCompatActivity {
 
     private ViewPager2 viewPagerAnswer;
-
     private TextView questionChoose;
-
     private ImageView backBtn;
-
     private Map<QuestionModel, String> map = new HashMap<>();
-
     private int currentPosition = -1;
-
     private QuestionModel currentQuestion;
-
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
     private QuizData quizData;
 
     @Override
@@ -105,7 +97,8 @@ public class QuestionTypeActivity extends AppCompatActivity {
 
                     if (currentAnswer == null || currentAnswer.equals("-1")) {
                         Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                    } else {
+                    }
+                    else {
                         Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(QuestionTypeActivity.this, BilanActivity.class);

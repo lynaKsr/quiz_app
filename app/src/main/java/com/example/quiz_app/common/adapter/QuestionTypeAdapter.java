@@ -1,6 +1,7 @@
 package com.example.quiz_app.common.adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quiz_app.R;
@@ -78,7 +80,24 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
 
     private void setAnswerClick(View view, QuestionModel questionModel, String answer, int position) {
         view.setOnClickListener(v -> {
-            if(questionOnClick != null) {
+            if (questionOnClick != null) {
+                // Désélectionner tous les autres boutons
+                ViewGroup parent = (ViewGroup) view.getParent();
+                for (int i = 0; i < parent.getChildCount(); i++) {
+                    View childView = parent.getChildAt(i);
+                    if (childView instanceof Button) {
+                        Button button = (Button) childView;
+                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.defaultButtonColor)));
+                    }
+                }
+
+                // Sélectionner le bouton cliqué
+                if (view instanceof Button) {
+                    Button selectedButton = (Button) view;
+                    selectedButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.selectedButtonColor)));
+                }
+
+                // Appeler l'interface pour gérer la sélection de la réponse
                 questionOnClick.onClick(position, questionModel, answer);
             }
         });

@@ -44,42 +44,42 @@ public class ChooseCategoryActivity extends AppCompatActivity {
             // Lorsque l'utilisateur sélectionne la catégorie cinema
             Toast.makeText(ChooseCategoryActivity.this, "cinema category selected with success", Toast.LENGTH_SHORT).show();
 
-            sendDataToNextActivity("cinema");
+            sendDataToNextActivity("CINEMA");
         });
 
         musicImage.setOnClickListener(v -> {
             // Lorsque l'utilisateur sélectionne la catégorie musique
             Toast.makeText(ChooseCategoryActivity.this, "music category selected with success", Toast.LENGTH_SHORT).show();
 
-            sendDataToNextActivity("music");
+            sendDataToNextActivity("MUSIC");
         });
 
         knowledgeImage.setOnClickListener(v -> {
             // Lorsque l'utilisateur sélectionne la catégorie connaissance
             Toast.makeText(ChooseCategoryActivity.this, "knowledge category selected with success", Toast.LENGTH_SHORT).show();
 
-            sendDataToNextActivity("knowledge");
+            sendDataToNextActivity("KNOWLEDGE");
         });
 
         sportImage.setOnClickListener(v -> {
             // Lorsque l'utilisateur sélectionne la catégorie sport
             Toast.makeText(ChooseCategoryActivity.this, "sport category selected with success", Toast.LENGTH_SHORT).show();
 
-            sendDataToNextActivity("sport");
+            sendDataToNextActivity("SPORT");
         });
     }
 
     private void sendDataToNextActivity(String category) {
-        QuizData quizData = new QuizData();
-        quizData.setCategory(category);
+        //QuizData quizData = new QuizData();
+        //quizData.setCategory(category);
 
         // Ajout de logs pour vérifier les données
         Log.d("ChooseCategoryActivity", "Catégorie sélectionnée : " + category);
-        Log.d("ChooseCategoryActivity", "quizData créé avec catégorie : " + quizData.getCategory());
+        //Log.d("ChooseCategoryActivity", "quizData créé avec catégorie : " + quizData.getCategory());
 
         // Création d'un Intent pour la nouvelle activité et y ajouter l'objet quizData
         Intent intent = getIntentForCategory(CategoryQuestionMapper.getTypeQuestionsForCategory(category));
-        intent.putExtra("quizData", quizData);
+        intent.putExtra("cateCode", category);
         startActivity(intent);
     }
 

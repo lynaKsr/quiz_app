@@ -19,4 +19,12 @@ public class ResultAnswerModel {
     public void setQuestionModel(QuestionModel questionModel) {
         this.questionModel = questionModel;
     }
+
+    @Override
+    public String toString() {
+        return "ResultAnswerModel{" +
+                "answerYN='" + answerYN + '\'' +
+                ", questionModel=" + questionModel +
+                '}';
+    }
 }

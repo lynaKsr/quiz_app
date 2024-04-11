@@ -33,29 +33,27 @@ import java.util.Objects;
 public class QuestionTypeActivity extends AppCompatActivity {
 
     private ViewPager2 viewPagerAnswer;
+
     private TextView questionChoose;
+
     private ImageView backBtn;
+
     private Map<QuestionModel, String> map = new HashMap<>();
+
     private int currentPosition = -1;
+
     private QuestionModel currentQuestion;
+
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    private QuizData quizData;
+
+    private List<QuestionModel> questionModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_type);
-
-        Intent intentCategory = getIntent();
-        if (intentCategory != null) {
-            quizData = intentCategory.getParcelableExtra("quizData");
-            if (quizData != null) {
-                Log.d("QuestionTypeActivity", "QuizData récupérée avec succès : " + quizData);
-            } else {
-                Log.d("QuestionTypeActivity", "Aucune donnée QuizData trouvée dans l'intent");
-            }
-        }
 
         LanguageManager.updateLanguage(this);
 
@@ -81,6 +79,7 @@ public class QuestionTypeActivity extends AppCompatActivity {
                     if (currentAnswer == null || currentAnswer.equals("-1")) {
                         Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
                     } else {
+                        questionChoose.setText(questionModels.get(viewPagerAnswer.getCurrentItem() + 1).getQuestion());
                         currentPosition = -1;
                         currentQuestion = null;
                         viewPagerAnswer.setCurrentItem(viewPagerAnswer.getCurrentItem() + 1);
@@ -97,14 +96,8 @@ public class QuestionTypeActivity extends AppCompatActivity {
 
                     if (currentAnswer == null || currentAnswer.equals("-1")) {
                         Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(QuestionTypeActivity.this, BilanActivity.class);
-                        intent.putExtra("quizData", quizData);
-                        startActivity(intent);
-                        finish();
 
                         List<ResultAnswerModel> resultAnswerModels = new ArrayList<>();
                         for (Map.Entry<QuestionModel, String> entry : map.entrySet()) {
@@ -125,7 +118,10 @@ public class QuestionTypeActivity extends AppCompatActivity {
                                 .addOnSuccessListener(documentReference -> {
                                     Toast.makeText(this, "DocumentSnapshot added with ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
                                     Log.d("SAVE_ANSWER", "DocumentSnapshot added with ID: " + documentReference.getId());
-                                    finish();
+                                    Intent intent = new Intent(QuestionTypeActivity.this, BilanActivity.class);
+                                    intent.putExtra("answerId", documentReference.getId());
+                                    intent.putExtra("cateCode", cateCode);
+                                    startActivity(intent);
                                 })
                                 .addOnFailureListener(e -> {
                                     Toast.makeText(this, "Error adding document", Toast.LENGTH_SHORT).show();
@@ -143,15 +139,17 @@ public class QuestionTypeActivity extends AppCompatActivity {
         Query query = questionRef.whereEqualTo("cateCode", cateCode);
         query.addSnapshotListener((value, error) -> {
             if (value != null) {
-                List<QuestionModel> questionModels = value.toObjects(QuestionModel.class);
-                QuestionTypeAdapter questionTypeAdapter = new QuestionTypeAdapter(getApplicationContext(), questionModels, questionChoose);
+                questionModels = value.toObjects(QuestionModel.class);
+                QuestionTypeAdapter questionTypeAdapter = new QuestionTypeAdapter(getApplicationContext(), questionModels);
 
                 viewPagerAnswer.setAdapter(questionTypeAdapter);
+                viewPagerAnswer.setCurrentItem(viewPagerAnswer.getCurrentItem());
+                questionChoose.setText(questionModels.get(0).getQuestion());
+
                 questionTypeAdapter.setQuestionOnclick((position, questionModel, answer) -> {
                     map.put(questionModel, answer);
                     currentPosition = position;
                     currentQuestion = questionModel;
-
                 });
             }
         });

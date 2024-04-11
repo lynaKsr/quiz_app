@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="selectedButtonColor">#FFC107</color>
     <color name="defaultButtonColor">#9F7E69</color>
+    <color name="matter_brown">#9F7E69</color>
 </resources>

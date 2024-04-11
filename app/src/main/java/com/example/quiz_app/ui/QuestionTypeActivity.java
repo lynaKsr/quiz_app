@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.common.adapter.QuestionTypeAdapter;
 import com.example.quiz_app.model.QuestionModel;

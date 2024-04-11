@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,8 +27,6 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
     private Context context;
 
     private List<QuestionModel> questionModels;
-
-    //private TextView textView;
 
     private QuestionOnClick questionOnClick;
 
@@ -50,7 +49,8 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
     public void onBindViewHolder(@NonNull PageVH holder, int position) {
         QuestionModel questionModel = questionModels.get(position);
 
-        if (questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.MULTIPLE_CHOICE)) {
+        if (questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.MULTIPLE_CHOICE))
+        {
             holder.csMultipleChoice.setVisibility(View.VISIBLE);
             holder.csYN.setVisibility(View.GONE);
 
@@ -59,12 +59,14 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
             holder.buttonChoose3.setText(questionModel.getAnswerModels().get(2).getAnswer());
             holder.buttonChoose4.setText(questionModel.getAnswerModels().get(3).getAnswer());
 
+            // verifier si la réponse est bonne
             setAnswerClick(holder.buttonChoose1, questionModel, questionModel.getExactlyAnswer() == 1 ? "Y" : "N", position, holder);
             setAnswerClick(holder.buttonChoose2, questionModel, questionModel.getExactlyAnswer() == 2 ? "Y" : "N", position, holder);
             setAnswerClick(holder.buttonChoose3, questionModel, questionModel.getExactlyAnswer() == 3 ? "Y" : "N", position, holder);
             setAnswerClick(holder.buttonChoose4, questionModel, questionModel.getExactlyAnswer() == 4 ? "Y" : "N", position, holder);
         }
-        else if (questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.YES_NO)) {
+        else if (questionModel.getTypeQuestionEnum().equals(TypeQuestionEnum.YES_NO))
+        {
             holder.csMultipleChoice.setVisibility(View.GONE);
             holder.csYN.setVisibility(View.VISIBLE);
 
@@ -76,41 +78,34 @@ public class QuestionTypeAdapter extends RecyclerView.Adapter<QuestionTypeAdapte
 
     private void setAnswerClick(View view, QuestionModel questionModel, String answer, int position, PageVH holder) {
         view.setOnClickListener(v -> {
-            if(questionOnClick != null) {
+            if (questionOnClick != null) {
                 String viewName = context.getResources().getResourceEntryName(view.getId());
 
-                if (context.getResources().getResourceEntryName(view.getId()).contains("buttonChoose")){
+                if (context.getResources().getResourceEntryName(view.getId()).contains("buttonChoose")) {
                     view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.selectedButtonColor)));
-
-                    if (viewName.equals(context.getResources().getResourceEntryName(holder.buttonChoose1.getId())))
-                    {
+                    if (viewName.equals(context.getResources().getResourceEntryName(holder.buttonChoose1.getId()))) {
                         holder.buttonChoose2.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                         holder.buttonChoose3.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                         holder.buttonChoose4.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                     }
-
-                    if (viewName.equals(context.getResources().getResourceEntryName(holder.buttonChoose2.getId())))
-                    {
+                    if (viewName.equals(context.getResources().getResourceEntryName(holder.buttonChoose2.getId()))) {
                         holder.buttonChoose1.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                         holder.buttonChoose3.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                         holder.buttonChoose4.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                     }
 
-                    if (viewName.equals(context.getResources().getResourceEntryName(holder.buttonChoose3.getId())))
-                    {
+                    if (viewName.equals(context.getResources().getResourceEntryName(holder.buttonChoose3.getId()))) {
                         holder.buttonChoose1.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                         holder.buttonChoose2.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                         holder.buttonChoose4.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                     }
 
-                    if (viewName.equals(context.getResources().getResourceEntryName(holder.buttonChoose4.getId())))
-                    {
+                    if (viewName.equals(context.getResources().getResourceEntryName(holder.buttonChoose4.getId()))) {
                         holder.buttonChoose1.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                         holder.buttonChoose2.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                         holder.buttonChoose3.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.matter_brown)));
                     }
                 }
-
                 questionOnClick.onClick(position, questionModel, answer);
             }
         });

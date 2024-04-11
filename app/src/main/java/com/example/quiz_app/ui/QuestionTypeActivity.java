@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.common.adapter.QuestionTypeAdapter;
 import com.example.quiz_app.model.QuestionModel;
@@ -49,29 +50,12 @@ public class QuestionTypeActivity extends AppCompatActivity {
 
     private List<QuestionModel> questionModels = new ArrayList<>();
 
-    //private QuizData quizData;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_type);
 
         LanguageManager.updateLanguage(this);
-
-        /*
-        Intent intentCategory = getIntent();
-        if (intentCategory != null) {
-            quizData = intentCategory.getParcelableExtra("quizData");
-            if (quizData != null) {
-                Log.d("QuestionTypeActivity", "QuizData récupérée avec succès : " + quizData);
-            } else {
-                Log.d("QuestionTypeActivity", "Aucune donnée QuizData trouvée dans l'intent");
-            }
-        }
-        */
-
 
         viewPagerAnswer = findViewById(R.id.viewPagerAnswer);
         viewPagerAnswer.setUserInputEnabled(false);
@@ -114,14 +98,6 @@ public class QuestionTypeActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
-
-                        /*
-                        Intent intent = new Intent(QuestionTypeActivity.this, BilanActivity.class);
-                        intent.putExtra("quizData", quizData);
-                        startActivity(intent);
-                        finish();
-
-                         */
 
                         List<ResultAnswerModel> resultAnswerModels = new ArrayList<>();
                         for (Map.Entry<QuestionModel, String> entry : map.entrySet()) {
@@ -174,7 +150,6 @@ public class QuestionTypeActivity extends AppCompatActivity {
                     map.put(questionModel, answer);
                     currentPosition = position;
                     currentQuestion = questionModel;
-
                 });
             }
         });

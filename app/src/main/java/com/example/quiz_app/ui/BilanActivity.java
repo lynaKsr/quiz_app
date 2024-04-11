@@ -29,7 +29,7 @@ public class BilanActivity extends AppCompatActivity {
 
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
-    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    //private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     private TextView textViewUserNameChosen;
 

@@ -6,6 +6,14 @@ public class UserAnswerModel {
     private String userId;
     private List<ResultAnswerModel> resultAnswerModels;
 
+    public UserAnswerModel() {
+    }
+
+    public UserAnswerModel(String userId, List<ResultAnswerModel> resultAnswerModels){
+        this.userId = userId;
+        this.resultAnswerModels = resultAnswerModels;
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -20,5 +28,13 @@ public class UserAnswerModel {
 
     public void setResultAnswerModels(List<ResultAnswerModel> resultAnswerModels) {
         this.resultAnswerModels = resultAnswerModels;
+    }
+
+    @Override
+    public String toString() {
+        return "UserAnswerModel{" +
+                "userId='" + userId + '\'' +
+                ", resultAnswerModels=" + resultAnswerModels +
+                '}';
     }
 }

@@ -31,7 +31,8 @@
         android:background="#D2BBA0"
         android:text="@string/chosen_category"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserName"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/textViewCategoryName"
@@ -168,7 +169,7 @@
         android:layout_marginBottom="36dp"
         android:backgroundTint="#F0C9C1"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Save Report"
+        android:text="@string/save_report"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"

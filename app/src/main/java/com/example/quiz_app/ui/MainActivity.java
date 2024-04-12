@@ -54,5 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Configuration du bouton de sortie pour fermer l'application
         buttonExit.setOnClickListener(v -> finish());
+
+        verifyStoragePermissions(this);
     }
 }

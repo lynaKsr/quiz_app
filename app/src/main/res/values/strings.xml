@@ -86,5 +86,6 @@
     <string name="username">username :</string>
     <string name="total_number_of_questions">total number of questions :</string>
     <string name="feedback">feedback :</string>
+    <string name="save_report">Save Report</string>
 
 </resources>

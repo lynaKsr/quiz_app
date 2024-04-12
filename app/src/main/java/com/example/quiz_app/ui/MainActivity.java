@@ -1,13 +1,16 @@
 package com.example.quiz_app.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
+import android.Manifest;
 
-import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.model.QuestionModel;
 import com.example.quiz_app.utils.LanguageManager;
@@ -21,8 +24,18 @@ public class MainActivity extends AppCompatActivity {
 
     Button buttonStart;
     Button buttonExit;
-    QuizData quizData;
 
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+    public static void verifyStoragePermissions(Activity activity) {
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+        }
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,12 +48,8 @@ public class MainActivity extends AppCompatActivity {
         buttonStart = findViewById(R.id.buttonStart);
         buttonExit = findViewById(R.id.buttonExit);
 
-        // création de l'objet QuizData avec les informations nécessaires
-        quizData = new QuizData();
-
         buttonStart.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            intent.putExtra("quizData", quizData);
             startActivity(intent);
         });
 
@@ -59,5 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 //viewPagerAnswer.setAdapter(new QuestionT1Adapter(getApplicationContext(), questionModels, questionChoose));
             }
         });
+        verifyStoragePermissions(this);
     }
 }

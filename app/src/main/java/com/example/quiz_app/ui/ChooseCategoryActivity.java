@@ -25,6 +25,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     ImageView sportImage;
     ImageView knowledgeImage;
     ImageView cinemaImage;
+    QuizData quizData;
 
     private Map<QuestionModel, String> answers = new HashMap<>();
 
@@ -34,6 +35,11 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_category);
 
         LanguageManager.updateLanguage(this);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            quizData = intent.getParcelableExtra("quizData");
+        }
 
         cinemaImage = findViewById(R.id.cinemaImage);
         musicImage = findViewById(R.id.musicImage);
@@ -70,16 +76,16 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     }
 
     private void sendDataToNextActivity(String category) {
-        //QuizData quizData = new QuizData();
-        //quizData.setCategory(category);
+        quizData.setCategory(category);
 
         // Ajout de logs pour vérifier les données
         Log.d("ChooseCategoryActivity", "Catégorie sélectionnée : " + category);
-        //Log.d("ChooseCategoryActivity", "quizData créé avec catégorie : " + quizData.getCategory());
+        Log.d("ChooseCategoryActivity", "quizData créé avec catégorie : " + quizData.getCategory());
 
         // Création d'un Intent pour la nouvelle activité et y ajouter l'objet quizData
         Intent intent = getIntentForCategory(CategoryQuestionMapper.getTypeQuestionsForCategory(category));
         intent.putExtra("cateCode", category);
+        intent.putExtra("quizData", quizData);
         startActivity(intent);
     }
 

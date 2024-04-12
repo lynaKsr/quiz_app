@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.utils.LanguageManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,7 @@ public class AccueilActivity extends AppCompatActivity {
     EditText editTextPseudo;
     FirebaseUser user;
     ImageView imageViewStart;
+    QuizData quizData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class AccueilActivity extends AppCompatActivity {
         textView = findViewById(R.id.user_details);
         editTextPseudo = findViewById(R.id.editTextPseudo);
         imageViewStart = findViewById(R.id.imageViewStart);
+        quizData = new QuizData();
 
         user = auth.getCurrentUser();
         if (user != null) {
@@ -90,9 +94,18 @@ public class AccueilActivity extends AppCompatActivity {
         });
 
         imageViewStart.setOnClickListener(v -> {
-            // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
-            Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
-            startActivity(intent);
+            String pseudo = editTextPseudo.getText().toString();
+            if(!pseudo.isEmpty()) {
+                quizData.setUsername(pseudo);
+                // redirection de l'utilisateur vers l'activité de choix de catégorie afin de commencer le quiz
+                Intent intent = new Intent(AccueilActivity.this, ChooseCategoryActivity.class);
+                intent.putExtra("quizData", quizData);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(AccueilActivity.this, "Please enter a username first !", Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
     private void updateDisplayPseudo() {

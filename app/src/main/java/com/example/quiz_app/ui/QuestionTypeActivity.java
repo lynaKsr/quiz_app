@@ -31,23 +31,15 @@ import java.util.Map;
 import java.util.Objects;
 
 public class QuestionTypeActivity extends AppCompatActivity {
-
     private ViewPager2 viewPagerAnswer;
-
     private TextView questionChoose;
-
     private ImageView backBtn;
-
     private Map<QuestionModel, String> map = new HashMap<>();
-
     private int currentPosition = -1;
-
     private QuestionModel currentQuestion;
-
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
+    private TextView count;
     private List<QuestionModel> questionModels = new ArrayList<>();
 
     @Override
@@ -62,11 +54,19 @@ public class QuestionTypeActivity extends AppCompatActivity {
 
         questionChoose = findViewById(R.id.questionChoose1);
         backBtn = findViewById(R.id.back);
+        count = findViewById(R.id.count1);
 
         Intent intentBundle = getIntent();
         String cateCode = intentBundle.getStringExtra("cateCode");
 
         Button buttonNext = findViewById(R.id.buttonNext1);
+        viewPagerAnswer.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                count.setText((position + 1) + "/" + Objects.requireNonNull(viewPagerAnswer.getAdapter()).getItemCount());
+            }
+        });
         buttonNext.setOnClickListener(v -> {
             boolean isLastPage = (viewPagerAnswer.getCurrentItem() + 1) >= Objects.requireNonNull(viewPagerAnswer.getAdapter()).getItemCount();
 
@@ -86,6 +86,7 @@ public class QuestionTypeActivity extends AppCompatActivity {
                     }
                 }
             }
+
 
             // si c'est la derniere question
             if (isLastPage) {
@@ -158,4 +159,3 @@ public class QuestionTypeActivity extends AppCompatActivity {
                 finish());
     }
 }
-

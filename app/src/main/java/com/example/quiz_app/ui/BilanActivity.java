@@ -1,12 +1,19 @@
 package com.example.quiz_app.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 //import android.util.Log;
+import android.os.Environment;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 //import com.example.quiz_app.QuizData;
@@ -20,6 +27,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +49,10 @@ public class BilanActivity extends AppCompatActivity {
     private  TextView totalNumberQuestion;
 
     private TextView totalNumberCorrectAnswer;
+    private Button buttonExit;
+    private Button buttonSaveReport;
+    private RatingBar ratingBar;
+    private TextView textViewRemark;
 
     //private QuizData quizData;
     @SuppressLint("SetTextI18n")
@@ -48,6 +65,10 @@ public class BilanActivity extends AppCompatActivity {
         textViewUserNameChosen = findViewById(R.id.textViewUserNameChosen);
         totalNumberQuestion = findViewById(R.id.textViewTotalQuestions);
         totalNumberCorrectAnswer = findViewById(R.id.textViewNbCorrect);
+        buttonExit = findViewById(R.id.buttonBilanExit);
+        buttonSaveReport = findViewById(R.id.buttonSaveBilan);
+        ratingBar = findViewById(R.id.ratingBar);
+        textViewRemark = findViewById(R.id.textViewRemark);
 
         Intent intent = getIntent();
         String answerId = intent.getStringExtra("answerId");
@@ -89,23 +110,99 @@ public class BilanActivity extends AppCompatActivity {
                             totalNumberQuestion.setText(String.valueOf(totalQuestion));
                             totalNumberCorrectAnswer.setText(totalAnswerCorrect.size() + "/" + totalQuestion);
 
+                            // Récupération des valeurs depuis les TextView
+                            String totalCorrectAnswerText = totalNumberCorrectAnswer.getText().toString();
+                            String totalQuestionText = totalNumberQuestion.getText().toString();
+
+                            // Conversion des valeurs en entiers
+                            int totalCorrectAnswer = Integer.parseInt(totalCorrectAnswerText.substring(0, totalCorrectAnswerText.indexOf("/")));
+                            totalQuestion = Integer.parseInt(totalQuestionText);
+
+                            double percentageCorrect = ((double) totalCorrectAnswer / totalQuestion) * 100;
+                            if (percentageCorrect >= 50) {
+                                textViewRemark.setText("Félicitations ! Vous avez bien joué !");
+                            } else {
+                                textViewRemark.setText("Vous pouvez faire mieux la prochaine fois.");
+                            }
+
+                            float rating;
+                            if (percentageCorrect >= 75) {
+                                rating = 5.0f;
+                            } else if (percentageCorrect >= 50) {
+                                rating = 4.0f;
+                            } else if (percentageCorrect >= 25) {
+                                rating = 3.0f;
+                            } else {
+                                rating = 2.0f;
+                            }
+
+                            ratingBar.setRating(rating);
+                            ratingBar.setIsIndicator(true);
                         }
                         System.out.println("resultAnswerModel: " + userAnswerModel);
                     });
         }
 
-        /*
-        if (intent != null) {
-            quizData = intent.getParcelableExtra("quizData");
-            if (quizData != null) {
-                Log.d("BilanActivity", "QuizData récupérée avec succès : " + quizData);
-                String category = quizData.getCategory();
-                Log.d("BilanActivity", "Catégorie récupérée depuis quizData : " + category);
-                textViewCategoryName.setText(category);
+        buttonExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishAffinity();
             }
-            else {
-                Log.d("BilanActivity", "Aucune donnée QuizData trouvée dans l'intent");
+        });
+
+        buttonSaveReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConfirmationDialog();
             }
-        }*/
+        });
+
     }
+
+    public void write_bilan_in_file() {
+        File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File fileout = new File(folder, "quiz_bilan.txt");
+        try (FileOutputStream fos = new FileOutputStream(fileout)) {
+            PrintStream ps = new PrintStream(fos);
+            ps.println("Quiz Bilan:");
+            ps.println("Nom d'utilisateur : " + textViewUserNameChosen.getText().toString());
+            ps.println("Nombre de réponses correctes: " + totalNumberCorrectAnswer.getText().toString());
+            ps.println("Nombre total de questions : " + totalNumberQuestion.getText().toString());
+            ps.println("remarque : " + textViewRemark.getText().toString());
+
+
+            ps.close();
+            Log.d("BilanActivity", "Bilan du quiz enregistré avec succès dans le fichier " + fileout.getAbsolutePath());
+        } catch (FileNotFoundException e) {
+            Log.e("BilanActivity", "Erreur lors de l'enregistrement du bilan du quiz dans le fichier", e);
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("BilanActivity", "Erreur d'E/S lors de l'enregistrement du bilan du quiz dans le fichier", e);
+        }
+    }
+
+
+    private void showConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("save report");
+        builder.setMessage("do you want to save the report ? ");
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                write_bilan_in_file();
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
 }

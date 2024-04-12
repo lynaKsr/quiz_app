@@ -12,13 +12,7 @@ import android.widget.Button;
 import android.Manifest;
 
 import com.example.quiz_app.R;
-import com.example.quiz_app.model.QuestionModel;
 import com.example.quiz_app.utils.LanguageManager;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+
+    // méthode pour vérifier les autorisations de stockage
     public static void verifyStoragePermissions(Activity activity) {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (permission != PackageManager.PERMISSION_GRANTED) {
@@ -43,31 +39,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // mettre à jour la langue de l'application
         LanguageManager.updateLanguage(this);
 
+        // initialisation des boutons
         buttonStart = findViewById(R.id.buttonStart);
         buttonExit = findViewById(R.id.buttonExit);
 
+        // Configuration du bouton de démarrage pour ouvrir l'activité de connexion
         buttonStart.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         });
 
+        // Configuration du bouton de sortie pour fermer l'application
         buttonExit.setOnClickListener(v -> finish());
-
-        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-        CollectionReference questionRef = firebaseFirestore.collection("develop")
-                .document("quizz")
-                .collection("question");
-
-        Query query = questionRef.whereEqualTo("cateCode", "CINEMA");
-        query.addSnapshotListener((value, error) -> {
-            if (value != null) {
-                List<QuestionModel> questionModels = value.toObjects(QuestionModel.class);
-                System.out.println("questionList: " + questionModels);
-                //viewPagerAnswer.setAdapter(new QuestionT1Adapter(getApplicationContext(), questionModels, questionChoose));
-            }
-        });
-        verifyStoragePermissions(this);
     }
 }

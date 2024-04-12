@@ -21,7 +21,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/buttonSetting"
         android:layout_width="190dp"
         android:layout_height="63dp"
         android:layout_marginStart="22dp"
@@ -48,7 +48,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logout"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSetting"
         tools:ignore="TextSizeCheck" />
 
     <LinearLayout

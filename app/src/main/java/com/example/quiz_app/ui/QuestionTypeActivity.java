@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
 import com.example.quiz_app.common.adapter.QuestionTypeAdapter;
 import com.example.quiz_app.model.QuestionModel;
@@ -28,9 +27,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class QuestionTypeActivity extends AppCompatActivity {
+    private static final String TAG = "QuestionTypeActivity";
     private ViewPager2 viewPagerAnswer;
     private TextView questionChoose;
     private ImageView backBtn;
@@ -47,11 +47,11 @@ public class QuestionTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_type);
 
+        // Mise à jour de la langue de l'application
         LanguageManager.updateLanguage(this);
 
         viewPagerAnswer = findViewById(R.id.viewPagerAnswer);
         viewPagerAnswer.setUserInputEnabled(false);
-
         questionChoose = findViewById(R.id.questionChoose1);
         backBtn = findViewById(R.id.back);
         count = findViewById(R.id.count1);
@@ -59,80 +59,21 @@ public class QuestionTypeActivity extends AppCompatActivity {
         Intent intentBundle = getIntent();
         String cateCode = intentBundle.getStringExtra("cateCode");
 
+        // Bouton next pour passer à la question suivante
         Button buttonNext = findViewById(R.id.buttonNext1);
+
+        // Affichage du numéro de la question actuelle
         viewPagerAnswer.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                count.setText((position + 1) + "/" + Objects.requireNonNull(viewPagerAnswer.getAdapter()).getItemCount());
-            }
-        });
-        buttonNext.setOnClickListener(v -> {
-            boolean isLastPage = (viewPagerAnswer.getCurrentItem() + 1) >= Objects.requireNonNull(viewPagerAnswer.getAdapter()).getItemCount();
-
-            if ((viewPagerAnswer.getCurrentItem() + 1) != Objects.requireNonNull(viewPagerAnswer.getAdapter()).getItemCount()) {
-                if (currentPosition < 0) {
-                    Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                } else {
-                    String currentAnswer = map.getOrDefault(currentQuestion, "-1");
-
-                    if (currentAnswer == null || currentAnswer.equals("-1")) {
-                        Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                    } else {
-                        questionChoose.setText(questionModels.get(viewPagerAnswer.getCurrentItem() + 1).getQuestion());
-                        currentPosition = -1;
-                        currentQuestion = null;
-                        viewPagerAnswer.setCurrentItem(viewPagerAnswer.getCurrentItem() + 1);
-                    }
-                }
-            }
-
-
-            // si c'est la derniere question
-            if (isLastPage) {
-                if (currentPosition < 0) {
-                    Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                } else {
-                    String currentAnswer = map.getOrDefault(currentQuestion, "-1");
-
-                    if (currentAnswer == null || currentAnswer.equals("-1")) {
-                        Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
-
-                        List<ResultAnswerModel> resultAnswerModels = new ArrayList<>();
-                        for (Map.Entry<QuestionModel, String> entry : map.entrySet()) {
-                            ResultAnswerModel resultAnswerModel = new ResultAnswerModel();
-                            resultAnswerModel.setQuestionModel(entry.getKey());
-                            resultAnswerModel.setAnswerYN(entry.getValue());
-                            resultAnswerModels.add(resultAnswerModel);
-                        }
-
-                        UserAnswerModel userAnswerModel = new UserAnswerModel();
-                        userAnswerModel.setUserId(firebaseUser.getUid());
-                        userAnswerModel.setResultAnswerModels(resultAnswerModels);
-
-                        firebaseFirestore.collection("develop")
-                                .document("quizz")
-                                .collection("answer")
-                                .add(userAnswerModel)
-                                .addOnSuccessListener(documentReference -> {
-                                    Toast.makeText(this, "DocumentSnapshot added with ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
-                                    Log.d("SAVE_ANSWER", "DocumentSnapshot added with ID: " + documentReference.getId());
-                                    Intent intent = new Intent(QuestionTypeActivity.this, BilanActivity.class);
-                                    intent.putExtra("answerId", documentReference.getId());
-                                    intent.putExtra("cateCode", cateCode);
-                                    startActivity(intent);
-                                })
-                                .addOnFailureListener(e -> {
-                                    Toast.makeText(this, "Error adding document", Toast.LENGTH_SHORT).show();
-                                    Log.w("SAVE_ANSWER", "Error adding document", e);
-                                });
-                    }
-                }
+                count.setText((position + 1) + "/" + questionModels.size());
             }
         });
 
+        buttonNext.setOnClickListener(v -> onNextButtonClick());
+
+        // récupération des questions depuis Firestore
         CollectionReference questionRef = firebaseFirestore.collection("develop")
                 .document("quizz")
                 .collection("question");
@@ -155,7 +96,65 @@ public class QuestionTypeActivity extends AppCompatActivity {
             }
         });
 
-        backBtn.setOnClickListener(v ->
-                finish());
+        // bouton retour
+        backBtn.setOnClickListener(v -> finish());
+    }
+
+    // Gestion du clic sur le bouton "Next"
+    private void onNextButtonClick() {
+        boolean isLastPage = (viewPagerAnswer.getCurrentItem() + 1) >= questionModels.size();
+
+        // verification si toutes les questions ont été répondues
+        if (currentPosition < 0) {
+            Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String currentAnswer = map.getOrDefault(currentQuestion, "-1");
+        if (currentAnswer == null || currentAnswer.equals("-1")) {
+            Toast.makeText(getApplicationContext(), "Please choose your answer", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Si c'est la dernière question, enregistrement des réponses
+        if(isLastPage) {
+            saveAnswersAndFinish();
+        }
+        else {
+            // Passer à la question suivante
+            questionChoose.setText(questionModels.get(viewPagerAnswer.getCurrentItem() + 1).getQuestion());
+            currentPosition = -1;
+            currentQuestion = null;
+            viewPagerAnswer.setCurrentItem(viewPagerAnswer.getCurrentItem() + 1);
+        }
+    }
+
+    // Enregistrement les réponses dans le Firestore et affichage du résultat
+    private void saveAnswersAndFinish() {
+        List<ResultAnswerModel> resultAnswerModels = new ArrayList<>();
+        for (Map.Entry<QuestionModel, String> entry : map.entrySet()) {
+            ResultAnswerModel resultAnswerModel = new ResultAnswerModel();
+            resultAnswerModel.setQuestionModel(entry.getKey());
+            resultAnswerModel.setAnswerYN(entry.getValue());
+            resultAnswerModels.add(resultAnswerModel);
+        }
+
+        UserAnswerModel userAnswerModel = new UserAnswerModel();
+        userAnswerModel.setUserId(firebaseUser.getUid());
+        userAnswerModel.setResultAnswerModels(resultAnswerModels);
+
+        firebaseFirestore.collection("develop")
+                .document("quizz")
+                .collection("answer")
+                .add(userAnswerModel)
+                .addOnSuccessListener(documentReference -> {
+                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    Intent intent = new Intent(QuestionTypeActivity.this, BilanActivity.class);
+                    intent.putExtra("answerId", documentReference.getId());
+                    startActivity(intent);
+                })
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "Error adding document", e);
+                });
     }
 }

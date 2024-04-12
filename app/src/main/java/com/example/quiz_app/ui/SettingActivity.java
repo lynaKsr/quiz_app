@@ -10,9 +10,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.quiz_app.QuizData;
 import com.example.quiz_app.R;
-import com.example.quiz_app.model.QuestionModel;
 import com.example.quiz_app.utils.LanguageManager;
 import com.example.quiz_app.utils.Utils;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +18,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.List;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -49,19 +46,16 @@ public class SettingActivity extends AppCompatActivity {
         editTextUserName.setText(username);
 
         String languageEnabled = preferences.getString("LANGUAGE", "");
-        switchLanguage.setChecked(languageEnabled.equals("true"));
-        switchLanguage.setText(languageEnabled.equals("true") ? R.string.french : R.string.english);
-        switchLanguage.setOnCheckedChangeListener(((buttonView, isChecked) -> {
-            if (isChecked) {
-                LanguageManager.setLanguage(SettingActivity.this, "fr");
-                switchLanguage.setText(R.string.french);
-            }
+        switchLanguage.setChecked(Boolean.parseBoolean(languageEnabled));
+        switchLanguage.setText(Boolean.parseBoolean(languageEnabled) ? R.string.french : R.string.english);
 
-            else {
-                LanguageManager.setLanguage(SettingActivity.this, "en");
-                switchLanguage.setText(R.string.english);
-            }
-        }));
+        switchLanguage.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Changer la langue lors du changement de l'état du commutateur
+            String language = isChecked ? "fr" : "en";
+            LanguageManager.setLanguage(SettingActivity.this, language);
+            switchLanguage.setText(isChecked ? R.string.french : R.string.english);
+        });
+
         // gestion du clic sur le bouton "logout"
         buttonLogout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
@@ -69,11 +63,14 @@ public class SettingActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        // Gestion du clic sur le bouton "save question"
         btnSaveQuestion.setOnClickListener(v -> {
             Intent intent = new Intent(SettingActivity.this, SaveQuestionActivity.class);
             startActivity(intent);
         });
 
+        // Gestion du clic sur le bouton "save category"
         btnSaveCategory.setOnClickListener(v -> {
             Intent intent = new Intent(SettingActivity.this, SaveCategoryActivity.class);
             startActivity(intent);
@@ -86,24 +83,19 @@ public class SettingActivity extends AppCompatActivity {
 
         Query query = questionRef.whereEqualTo("cateCode", "CINEMA");
         query.addSnapshotListener((value, error) -> {
-            if (value != null) {
-                List<QuestionModel> questionModels = value.toObjects(QuestionModel.class);
-                System.out.println("questionList: " + questionModels);
-            }
         });
 
         // gestion du clic sur le bouton "save"
         buttonSave.setOnClickListener(v -> {
             String newUserName = editTextUserName.getText().toString();
-            // enregistrement des changements de langue
+            // enregistrement des modifications de l'utilisateur
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("USERNAME", newUserName);
             editor.putString("LANGUAGE", String.valueOf(switchLanguage.isChecked()));
             editor.apply();
 
-            // redémarrage de toutes les activités pour que les changement de langue prennent effet immédiatement
+            // redémarrage de toutes les activités pour que les changement de langue prennent effet
             Utils.restartAllActivities(SettingActivity.this);
-            // affichage d'un message de succés
             Toast.makeText(SettingActivity.this, "Settings saved successfully", Toast.LENGTH_SHORT).show();
 
             finish();

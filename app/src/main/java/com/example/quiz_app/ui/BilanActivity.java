@@ -32,22 +32,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BilanActivity extends AppCompatActivity {
-
-    private TextView textViewCategoryName;
-
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-
+    private TextView textViewCategoryName;
     private TextView textViewUserNameChosen;
-
     private  TextView totalNumberQuestion;
-
     private TextView totalNumberCorrectAnswer;
     private Button buttonExit;
     private Button buttonSaveReport;
     private RatingBar ratingBar;
     private TextView textViewRemark;
 
-    //private QuizData quizData;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,17 +57,19 @@ public class BilanActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         textViewRemark = findViewById(R.id.textViewRemark);
 
+        // Récupération des données de l'intent
         Intent intent = getIntent();
         String answerId = intent.getStringExtra("answerId");
         String cateCode = intent.getStringExtra("cateCode");
 
+        // Récupération du nom d'utilisateur depuis les préférences partagées
         SharedPreferences sharedPref = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
-        if (null != sharedPref) {
+        if (sharedPref != null) {
             textViewUserNameChosen.setText(sharedPref.getString("USERNAME", ""));
         }
 
-        System.out.println("cateCode");
-        if (null != cateCode) {
+        // Récupération du nom de la catégorie et mise à jour du TextView correspondant
+        if (cateCode != null) {
             CollectionReference questionRef = firebaseFirestore.collection("develop")
                     .document("quizz")
                     .collection("category");
@@ -81,14 +77,13 @@ public class BilanActivity extends AppCompatActivity {
             Query query = questionRef.whereEqualTo("code", cateCode);
             query.addSnapshotListener((value, error) -> {
                 if (value != null) {
-                    System.out.println("cateCode: " + value);
                     CategoryModel categoryModel = value.toObjects(CategoryModel.class).get(0);
                     textViewCategoryName.setText(categoryModel.getName());
                 }
             });
         }
 
-        if (null != answerId) {
+        if (answerId != null) {
             firebaseFirestore.collection("develop")
                     .document("quizz")
                     .collection("answer")
@@ -103,21 +98,18 @@ public class BilanActivity extends AppCompatActivity {
                             totalNumberQuestion.setText(String.valueOf(totalQuestion));
                             totalNumberCorrectAnswer.setText(totalAnswerCorrect.size() + "/" + totalQuestion);
 
-                            // Récupération des valeurs depuis les TextView
-                            String totalCorrectAnswerText = totalNumberCorrectAnswer.getText().toString();
-                            String totalQuestionText = totalNumberQuestion.getText().toString();
-
-                            // Conversion des valeurs en entiers
-                            int totalCorrectAnswer = Integer.parseInt(totalCorrectAnswerText.substring(0, totalCorrectAnswerText.indexOf("/")));
-                            totalQuestion = Integer.parseInt(totalQuestionText);
-
+                            // Calcul du pourcentage de réponses correctes
+                            int totalCorrectAnswer = Integer.parseInt(totalNumberCorrectAnswer.getText().toString().split("/")[0]);
                             double percentageCorrect = ((double) totalCorrectAnswer / totalQuestion) * 100;
+
+                            // Affichage d'une remarque en fonction du pourcentage
                             if (percentageCorrect >= 50) {
                                 textViewRemark.setText("Félicitations ! Vous avez bien joué !");
                             } else {
                                 textViewRemark.setText("Vous pouvez faire mieux la prochaine fois.");
                             }
 
+                            // Attribution de la note en fonction du pourcentage
                             float rating;
                             if (percentageCorrect >= 75) {
                                 rating = 5.0f;
@@ -128,20 +120,17 @@ public class BilanActivity extends AppCompatActivity {
                             } else {
                                 rating = 2.0f;
                             }
-
                             ratingBar.setRating(rating);
                             ratingBar.setIsIndicator(true);
                         }
-                        System.out.println("resultAnswerModel: " + userAnswerModel);
                     });
         }
-
         buttonExit.setOnClickListener(v -> finishAffinity());
-
         buttonSaveReport.setOnClickListener(v -> showConfirmationDialog());
 
     }
 
+    // Méthode pour écrire le bilan dans un fichier texte
     public void write_bilan_in_file() {
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         File fileout = new File(folder, "quiz_bilan.txt");
@@ -165,7 +154,6 @@ public class BilanActivity extends AppCompatActivity {
         }
     }
 
-
     private void showConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("save report");
@@ -177,5 +165,4 @@ public class BilanActivity extends AppCompatActivity {
         dialog.show();
 
     }
-
 }

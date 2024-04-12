@@ -66,6 +66,18 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="home">Accueil</string>
+    <string name="report">Bilan</string>
+    <string name="chosen_category">"categorie choisie : "</string>
+    <string name="categoryname">nom de la catégorie</string>
+    <string name="number_of_correct_answers">"nombre de bonnes réponses : "</string>
+    <string name="nbcorrectquestion">"nombre de questions : "</string>
+    <string name="remark">"remarque "</string>
+    <string name="nbquestions">nombre de questions</string>
+    <string name="username">"pseudo : "</string>
+    <string name="total_number_of_questions">"nombre total de questions : "</string>
+    <string name="feedback">"retour : "</string>
+    <string name="save_report">enregistrer le bilan</string>
+    <string name="usernameA">pseudo</string>
 
 
 </resources>

@@ -75,7 +75,7 @@
     <string name="settings">Settings</string>
     <string name="share">Share</string>
     <string name="home">Home</string>
-    <string name="history">History</string>
+    <string name="history" translatable="false">History</string>
     <string name="report">Report :</string>
     <string name="chosen_category">chosen category :</string>
     <string name="categoryname">category name</string>
@@ -87,5 +87,6 @@
     <string name="total_number_of_questions">total number of questions :</string>
     <string name="feedback">feedback :</string>
     <string name="save_report">Save Report</string>
+    <string name="usernameA">username</string>
 
 </resources>
